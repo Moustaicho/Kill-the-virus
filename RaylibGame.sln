@@ -5,6 +5,8 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RaylibGame", "RaylibGame\RaylibGame.vcxproj", "{60D6E91B-68D5-4735-977E-11033BA7C641}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "Engine\Engine.vcxproj", "{B69F6EDC-9AE0-411C-B3EB-23DD24B681FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{60D6E91B-68D5-4735-977E-11033BA7C641}.Release|x64.Build.0 = Release|x64
 		{60D6E91B-68D5-4735-977E-11033BA7C641}.Release|x86.ActiveCfg = Release|Win32
 		{60D6E91B-68D5-4735-977E-11033BA7C641}.Release|x86.Build.0 = Release|Win32
+		{B69F6EDC-9AE0-411C-B3EB-23DD24B681FB}.Debug|x64.ActiveCfg = Debug|x64
+		{B69F6EDC-9AE0-411C-B3EB-23DD24B681FB}.Debug|x64.Build.0 = Debug|x64
+		{B69F6EDC-9AE0-411C-B3EB-23DD24B681FB}.Debug|x86.ActiveCfg = Debug|Win32
+		{B69F6EDC-9AE0-411C-B3EB-23DD24B681FB}.Debug|x86.Build.0 = Debug|Win32
+		{B69F6EDC-9AE0-411C-B3EB-23DD24B681FB}.Release|x64.ActiveCfg = Release|x64
+		{B69F6EDC-9AE0-411C-B3EB-23DD24B681FB}.Release|x64.Build.0 = Release|x64
+		{B69F6EDC-9AE0-411C-B3EB-23DD24B681FB}.Release|x86.ActiveCfg = Release|Win32
+		{B69F6EDC-9AE0-411C-B3EB-23DD24B681FB}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

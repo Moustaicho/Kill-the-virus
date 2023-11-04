@@ -206,6 +206,12 @@ typedef struct Vector2 {
     float y;                // Vector y component
 } Vector2;
 
+typedef struct Vector2i     //Custom Vector 2 for integers
+{
+    int x;
+    int y;
+} Vector2i;
+
 // Vector3, 3 components
 typedef struct Vector3 {
     float x;                // Vector x component

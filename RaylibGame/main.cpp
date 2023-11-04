@@ -1,19 +1,41 @@
-#include "raylib.h"
-#include <string>
-#include <iostream>
+#include "Engine.h"
+#include "Menu.h"
+#include "Game.h"
 
-
-//------------------------------------------------------------------------------------
-// Program main entry point
-//------------------------------------------------------------------------------------
 int main(void)
 {
+    //Instatiate game
+    Engine gameEngine;
+
+    //Add stuff to it
+    //this shit isnt called because all the stuff is done in the engine before its added dumbass.
+    //the game programmmer needs access to add to the engine before initialize is done duh??!!
+    Scene* menuScene = new Scene("MenuScene");
+    gameEngine.AddScene(menuScene);
+
+    Scene* gameScene = new Scene("GameScene");
+    gameEngine.AddScene(gameScene);
+
+
+    Menu menu(gameEngine);
+    menuScene->AddGameObject(&menu);
+
+    Game game(gameEngine);
+    gameScene->AddGameObject(&game);
+
+    //Initialize game
+    gameEngine.Initialize();
+    //Update Game
+    gameEngine.Update();
+
+
+    /*
     // Initialization
     //--------------------------------------------------------------------------------------
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "KILL THE VIRUS - MAIN WINDOW");
+    //InitWindow(screenWidth, screenHeight, "KILL THE VIRUS - MAIN WINDOW");
     InitWindow(screenWidth, screenHeight, "MENU WINDOW");
     Vector2 screenPos{GetMonitorWidth(0), GetMonitorHeight(0)};
     SetWindowPosition(screenPos.x/2 - screenWidth/2, screenPos.y/2 - screenHeight/2);
@@ -78,6 +100,6 @@ int main(void)
     //--------------------------------------------------------------------------------------
     CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
-
+    */
     return 0;
 }
