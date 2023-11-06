@@ -41,6 +41,7 @@ void Scene::DrawScene()
 
 void Scene::AddGameObject(GameObject* gameobject)
 {
+	gameobject->SetId(gameObjects.size());
 	gameObjects.push_back(gameobject);
 }
 

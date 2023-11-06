@@ -23,4 +23,5 @@ void Game::Update()
 void Game::Draw()
 {
 	ClearBackground(DARKGREEN);
+	DrawText("Game", 300, 100, 20, WHITE);
 }

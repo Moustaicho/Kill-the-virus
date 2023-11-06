@@ -1,6 +1,7 @@
 #include "Engine.h"
 #include "Menu.h"
 #include "Game.h"
+#include "TestGameObject.h"
 
 int main(void)
 {
@@ -18,10 +19,16 @@ int main(void)
 
 
     Menu menu(gameEngine);
+
+    TestGameObject testObj;
+    menu.AddChild(&testObj);
+
     menuScene->AddGameObject(&menu);
 
     Game game(gameEngine);
     gameScene->AddGameObject(&game);
+
+
 
     //Initialize game
     gameEngine.Initialize();

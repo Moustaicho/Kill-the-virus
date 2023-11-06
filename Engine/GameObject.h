@@ -15,13 +15,21 @@ private:
 
 	bool isActive;
 
+	GameObject* parent;
 	std::vector<GameObject*> children;
 public:
 	GameObject(std::string name, Vector2 position = { 0, 0 }, float rotation = 0);
-
 	virtual ~GameObject() {};
 
+	void SetId(int id);
 	bool IsActive();
+	void SetPosition(Vector2 position);
+	Vector2 GetPosition();
+	void SetRotation(float rotation);
+
+	void SetParent(GameObject* parent);
+	void AddChild(GameObject* child);
+	GameObject* GetChildAt(int i);
 
 	virtual void Start() = 0;
 	virtual void Update() = 0;
