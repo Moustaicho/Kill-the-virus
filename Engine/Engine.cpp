@@ -1,39 +1,41 @@
 #include "Engine.h"
 
-
+Engine* Engine::instance = NULL;
 Engine::Engine()
-	: window(new Window(800, 450, "KILL THE VIRUS"))
+	: window(new Window(500, 500, "KILL THE VIRUS"))
 	, backgroundColor(RAYWHITE)
 {
 	window->SetPosition(GetMonitorWidth(currentMonitor) / 2 - window->GetSize().x / 2.0f, GetMonitorHeight(currentMonitor) / 2 - window->GetSize().y / 2.0f);
+	SetExitKey(KEY_NULL);
+}
 
+Engine* Engine::GetInstance()
+{
+	if (instance == nullptr)
+	{
+		instance = new Engine();
+	}
+	return instance;
 }
 
 void Engine::Initialize()
 {
+	InitAudioDevice();
 	scenes[currentScene]->InitializeScene();
 
 	SetTargetFPS(60);
 }
 void Engine::Update()
 {
-	while (!WindowShouldClose())    // Detect window close button or ESC key
+	while (!WindowShouldClose() && !closeGame)    // Detect window close button or ESC key
 	{
-		//Update inputs here
-
-		//Update objects here
 		scenes[currentScene]->UpdateScene();
 
 		BeginDrawing();
-		//Draw game objects here
+
 		ClearBackground(backgroundColor);
 
 		scenes[currentScene]->DrawScene();
-
-		//ClearBackground(RAYWHITE);
-		//DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
-		//DrawText(std::to_string(GetFPS()).c_str(), 10, 10, 20, GREEN);
-
 
 		EndDrawing();
 	}
@@ -41,6 +43,7 @@ void Engine::Update()
 }
 void Engine::UnInitialize()
 {
+	CloseAudioDevice();
 	CloseWindow();
 }
 
@@ -56,6 +59,8 @@ void Engine::AddScene(Scene* newScene)
 
 void Engine::LoadScene(std::string name)
 {
+	assert(scenes.find(name) != scenes.end() && "Could not find Scene!");
+
 	currentScene = name;
 	scenes[currentScene]->InitializeScene();
 }
@@ -68,4 +73,14 @@ Window* Engine::GetWindow()
 void Engine::SetBackgroundColor(Color color)
 {
 	backgroundColor = color;
+}
+
+int Engine::GetCurrentMonitor()
+{
+	return currentMonitor;
+}
+
+void Engine::CloseGame()
+{
+	closeGame = true;
 }

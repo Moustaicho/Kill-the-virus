@@ -5,9 +5,11 @@
 class Game : public GameObject
 {
 private:
-	Engine& gameref;
+	Engine* engineRef;
+	Music track;
 public:
-	Game(Engine& ref);
+	Game();
+	~Game();
 	void Start();
 	void Update();
 	void Draw();

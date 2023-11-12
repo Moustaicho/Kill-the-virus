@@ -1,5 +1,5 @@
 #include "GameObject.h"
-
+#include <iostream>
 GameObject::GameObject(std::string name, Vector2 position, float rotation)
 	: name(name)
 	, position(position)
@@ -16,6 +16,11 @@ void GameObject::SetId(int id)
 	this->id = id;
 }
 
+void GameObject::SetActive(bool active)
+{
+	this->isActive = active;
+}
+
 bool GameObject::IsActive()
 {
 	return isActive;
@@ -23,12 +28,22 @@ bool GameObject::IsActive()
 
 void GameObject::SetPosition(Vector2 position)
 {
-	//the child position equals the parent but then we calculate the childs position with the parent included again with the parent. idiot
+	if (parent != nullptr)
+	{
+		this->position = position - parent->position;
+		return;
+	}
+
 	this->position = position;
 }
 
 Vector2 GameObject::GetPosition()
 {
+	if (parent != nullptr) 
+	{
+		return (parent->position + position);
+	}
+
 	return position;
 }
 
@@ -41,6 +56,11 @@ void GameObject::SetParent(GameObject* parent)
 {
 	this->parent = parent;
 	//need to at current object to parent children vector?
+}
+
+GameObject* GameObject::GetParent()
+{
+	return parent;
 }
 
 void GameObject::AddChild(GameObject* child)

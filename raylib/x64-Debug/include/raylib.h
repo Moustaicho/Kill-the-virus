@@ -208,6 +208,11 @@ typedef struct Vector2 {
     {
         return { this->x + vector2.x, this->y + vector2.y };
     }
+
+    Vector2 operator-(Vector2 const& vector2)
+    {
+        return { this->x - vector2.x, this->y - vector2.y };
+    }
 } Vector2;
 
 typedef struct Vector2i     //Custom Vector 2 for integers

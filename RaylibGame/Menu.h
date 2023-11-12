@@ -1,13 +1,22 @@
 #pragma once
 #include "Engine.h"
+#include "FontLibrary.h"
 #include "GameObject.h"
+#include "UIButton.h"
 
 class Menu : public GameObject
 {
 private:
-	Engine& gameref;
+	Engine* engineRef;
+	std::string title;
+	int fontSize;
+	UIButton buttonPlay;
+	UIButton buttonCredit;
+	UIButton buttonQuit;
+private:
+
 public:
-	Menu(Engine& ref);
+	Menu();
 	void Start();
 	void Update();
 	void Draw();

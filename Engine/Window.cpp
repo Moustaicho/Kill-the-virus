@@ -1,7 +1,9 @@
 #include "Window.h"
+#include <iostream>
 
 Window::Window(int width, int height, const char* title)
 {
+	SetConfigFlags(FLAG_WINDOW_TRANSPARENT);
 	size = { width, height };
 	InitWindow(width, height, title);
 	SetWindowPosition(100, 100);

@@ -22,12 +22,14 @@ public:
 	virtual ~GameObject() {};
 
 	void SetId(int id);
+	void SetActive(bool active);
 	bool IsActive();
 	void SetPosition(Vector2 position);
 	Vector2 GetPosition();
 	void SetRotation(float rotation);
 
 	void SetParent(GameObject* parent);
+	GameObject* GetParent();
 	void AddChild(GameObject* child);
 	GameObject* GetChildAt(int i);
 

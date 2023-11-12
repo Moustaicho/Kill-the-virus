@@ -1,27 +1,33 @@
 #include "Game.h"
 #include <iostream>
 
-Game::Game(Engine& ref) : GameObject("Game")
-	, gameref(ref)
+Game::Game() : GameObject("Game")
+	, engineRef(Engine::GetInstance())
 {
 
+}
+
+Game::~Game()
+{
+	
 }
 
 void Game::Start()
 {
-
+	track = LoadMusicStream("Assets/Audio/Music/Octahedron - CAMERA_SURVEILLANCE.wav");
+	PlayMusicStream(track);
 }
 
 void Game::Update()
 {
+	UpdateMusicStream(track);
 	if (IsKeyPressed(KEY_SPACE))
 	{
-		gameref.LoadScene("MenuScene");
+		engineRef->LoadScene("MenuScene");
 	}
 }
 
 void Game::Draw()
 {
-	ClearBackground(DARKGREEN);
-	DrawText("Game", 300, 100, 20, WHITE);
+	ClearBackground(BLANK);
 }

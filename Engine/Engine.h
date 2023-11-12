@@ -9,20 +9,26 @@
 #include "Scene.h"
 #include "Window.h"
 
+//Singelton
 class Engine
 {
 private:
+	static Engine* instance;
+
+	bool closeGame = false;
+
 	int currentMonitor = 0;
 	std::string currentScene = "";
 	std::map<std::string, Scene*> scenes;
 	Window* window;
 	Color backgroundColor;
 private:
-
-public:
-
-public:
 	Engine();
+public:
+	Engine(Engine &other) = delete;
+	void operator=(const Engine&) = delete;
+
+	static Engine* GetInstance();
 
 	void Initialize();
 	void Update();
@@ -33,4 +39,7 @@ public:
 
 	Window* GetWindow();
 	void SetBackgroundColor(Color color);
+	int GetCurrentMonitor();
+
+	void CloseGame();
 };

@@ -1,112 +1,54 @@
 #include "Engine.h"
+#include "FontLibrary.h"
 #include "Menu.h"
 #include "Game.h"
-#include "TestGameObject.h"
-
+#include "Credit.h"
+#include "GameUI.h"
+#include "Player.h"
+#include "raymath.h"
+#if defined(PLATFORM_DESKTOP)
+#define GLSL_VERSION            330
+#else   // PLATFORM_ANDROID, PLATFORM_WEB
+#define GLSL_VERSION            100
+#endif
+//X is Right
+//Y is Up
+//Z is Forward
 int main(void)
 {
-    //Instatiate game
-    Engine gameEngine;
+    //---------------Instatiate game------------------
+    Engine* gameEngine = Engine::GetInstance();
 
-    //Add stuff to it
-    //this shit isnt called because all the stuff is done in the engine before its added dumbass.
-    //the game programmmer needs access to add to the engine before initialize is done duh??!!
+    //----------------Add Fonts here------------------
+    Font font = LoadFont("Assets/Font/monofonto.otf");
+    FontLibrary* fontLibrary = FontLibrary::GetInstance();
+    fontLibrary->AddFont("Monto", font);
+    
+    //-------------Add gameplay here------------------
     Scene* menuScene = new Scene("MenuScene");
-    gameEngine.AddScene(menuScene);
-
+    gameEngine->AddScene(menuScene);
     Scene* gameScene = new Scene("GameScene");
-    gameEngine.AddScene(gameScene);
+    gameEngine->AddScene(gameScene);
+    Scene* creditScene = new Scene("CreditScene");
+    gameEngine->AddScene(creditScene);
 
-
-    Menu menu(gameEngine);
-
-    TestGameObject testObj;
-    menu.AddChild(&testObj);
-
+    Menu menu;
     menuScene->AddGameObject(&menu);
-
-    Game game(gameEngine);
+    Game game;
     gameScene->AddGameObject(&game);
+    Credit credit;
+    creditScene->AddGameObject(&credit);
 
+    Player player(*gameEngine);
+    gameScene->AddGameObject(&player);
 
+    GameUI gameUI;
+    gameScene->AddGameObject(&gameUI);
 
-    //Initialize game
-    gameEngine.Initialize();
-    //Update Game
-    gameEngine.Update();
-
-
-    /*
-    // Initialization
-    //--------------------------------------------------------------------------------------
-    const int screenWidth = 800;
-    const int screenHeight = 450;
-
-    //InitWindow(screenWidth, screenHeight, "KILL THE VIRUS - MAIN WINDOW");
-    InitWindow(screenWidth, screenHeight, "MENU WINDOW");
-    Vector2 screenPos{GetMonitorWidth(0), GetMonitorHeight(0)};
-    SetWindowPosition(screenPos.x/2 - screenWidth/2, screenPos.y/2 - screenHeight/2);
-
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-    //--------------------------------------------------------------------------------------
-    bool isMoving = false;
-    float speed = 10.0f;
-    float upspeed = 10.0f;
-    // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
-    {
-        // Update
-        //----------------------------------------------------------------------------------
-        // TODO: Update your variables here
-        //----------------------------------------------------------------------------------
-        if (IsKeyPressed(KEY_ENTER))
-        {
-            isMoving = !isMoving;
-        }
-
-        if (isMoving)
-        {
-            if (GetWindowPosition().x + screenWidth >= GetMonitorWidth(0)) 
-            {
-                speed *= -1;
-            }
-            else if (GetWindowPosition().x <= 0) 
-            {
-                speed *= -1;
-            }
-
-            if (GetWindowPosition().y + screenHeight >= GetMonitorHeight(0))
-            {
-                upspeed *=-1;
-            }
-            else if (GetWindowPosition().y <= 0)
-            {
-                upspeed *= -1;
-            }
-
-
-            SetWindowPosition(GetWindowPosition().x + speed, GetWindowPosition().y + upspeed);
-
-        }
-
-        // Draw
-        //----------------------------------------------------------------------------------
-        BeginDrawing();
-
-        ClearBackground(RAYWHITE);
-
-        DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
-
-        DrawText(std::to_string(GetFPS()).c_str(), 10, 10, 20, GREEN);
-
-        EndDrawing();
-        //----------------------------------------------------------------------------------
-    }
-
-    // De-Initialization
-    //--------------------------------------------------------------------------------------
-    CloseWindow();        // Close window and OpenGL context
-    //--------------------------------------------------------------------------------------
-    */
+    //--------------Initialize game------------------
+    gameEngine->Initialize();
+    //----------------Update game--------------------
+    gameEngine->Update();
+    
     return 0;
 }
