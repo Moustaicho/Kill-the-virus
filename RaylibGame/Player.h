@@ -12,6 +12,7 @@ private:
 	Engine& gameref;
 
 	//Virus Detector
+	Vector2 offsetRadar = {150, -150};
 	float currentRadius = 10;
 	float detectorSpeed = 1;
 private:

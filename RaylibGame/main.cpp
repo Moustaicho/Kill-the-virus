@@ -6,11 +6,7 @@
 #include "GameUI.h"
 #include "Player.h"
 #include "raymath.h"
-#if defined(PLATFORM_DESKTOP)
-#define GLSL_VERSION            330
-#else   // PLATFORM_ANDROID, PLATFORM_WEB
-#define GLSL_VERSION            100
-#endif
+
 //X is Right
 //Y is Up
 //Z is Forward

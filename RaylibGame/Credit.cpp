@@ -38,7 +38,7 @@ void Credit::Update()
 
 void Credit::Draw()
 {
-	ClearBackground(BLACK);
+	ClearBackground(BLANK);
 	DrawTextEx(font, title.c_str(), { engineRef->GetWindow()->GetSize().x / 2.0f - MeasureTextEx(font, title.c_str(), sizeTitle, 5).x / 2, 50 }, sizeTitle, 5, DARKGREEN);
 	DrawTextEx(font, creator.c_str(), { engineRef->GetWindow()->GetSize().x / 2.0f - MeasureTextEx(font, creator.c_str(), sizeCreator, 1).x / 2, 150 }, sizeCreator, 1, DARKGREEN);
 	DrawTextEx(font, music.c_str(), { engineRef->GetWindow()->GetSize().x / 2.0f - MeasureTextEx(font, music.c_str(), sizeMusic, 1).x / 2, 200 }, sizeMusic, 1, DARKGREEN);

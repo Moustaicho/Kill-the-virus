@@ -34,9 +34,9 @@ void Player::Update()
     }
 
     currentRadius+= detectorSpeed;
-    if (currentRadius >= 200)
+    if (currentRadius >= 100)
     {
-        currentRadius = 10;
+        currentRadius = 1;
     }
 
     MoveScreen();
@@ -44,12 +44,12 @@ void Player::Update()
 
 void Player::Draw()
 {
-    DrawCircle(center.x, center.y, 200, { 0, 64, 24, 255 });
-    DrawCircleLines(center.x, center.y, 200, WHITE);
-    DrawCircleLines(center.x, center.y, 150, WHITE);
-    DrawCircleLines(center.x, center.y, 100, WHITE);
-    DrawCircleLines(center.x, center.y, 50, WHITE);
-    DrawRing({ center.x, center.y }, currentRadius-5, currentRadius, 0, 360, 24, {0, 255, 0, 255});
+    DrawCircle(center.x+offsetRadar.x, center.y + offsetRadar.y, 100, { 0, 64, 24, 255 });
+    DrawCircleLines(center.x + offsetRadar.x, center.y + offsetRadar.y, 100, WHITE);
+    DrawCircleLines(center.x + offsetRadar.x, center.y + offsetRadar.y, 80, WHITE);
+    DrawCircleLines(center.x + offsetRadar.x, center.y + offsetRadar.y, 60, WHITE);
+    DrawCircleLines(center.x + offsetRadar.x, center.y + offsetRadar.y, 40, WHITE);
+    DrawRing({ center.x + offsetRadar.x, center.y + offsetRadar.y }, currentRadius-5, currentRadius, 0, 360, 24, {0, 255, 0, 255});
 }
 
 void Player::MoveScreen()
