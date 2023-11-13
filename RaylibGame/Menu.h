@@ -2,6 +2,7 @@
 #include "Engine.h"
 #include "raymath.h"
 #include "FontLibrary.h"
+#include "TextureHolder.h"
 #include "GameObject.h"
 #include "UIButton.h"
 
@@ -22,6 +23,7 @@ private:
 	UIButton buttonQuit;
 
 	Camera camera;
+	Mesh sphere;
 	Model sphereModel;
 	Shader shaderVirus;
 	int shaderFrame;
@@ -37,5 +39,6 @@ public:
 	void Start();
 	void Update();
 	void Draw();
+	void End();
 };
 

@@ -39,6 +39,14 @@ void Scene::DrawScene()
 	}
 }
 
+void Scene::EndScene()
+{
+	for (GameObject* gameObject : gameObjects)
+	{
+		gameObject->End();
+	}
+}
+
 void Scene::AddGameObject(GameObject* gameobject)
 {
 	gameobject->SetId(gameObjects.size());

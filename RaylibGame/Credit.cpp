@@ -45,3 +45,8 @@ void Credit::Draw()
 
 	GameObject::Draw();
 }
+
+void Credit::End()
+{
+
+}

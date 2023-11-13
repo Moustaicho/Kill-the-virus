@@ -106,6 +106,12 @@ void GameObject::Draw()
 			gameobject->Draw();
 		}
 	}
-	//DrawTextureEx(texture, position, rotation, scale.x, WHITE);
-	//DrawTexturePro();
+}
+
+void GameObject::End()
+{
+	for (GameObject* gameobject : children)
+	{
+		gameobject->End();
+	}
 }

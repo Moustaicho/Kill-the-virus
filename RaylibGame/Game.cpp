@@ -31,3 +31,8 @@ void Game::Draw()
 {
 	ClearBackground(BLANK);
 }
+
+void Game::End()
+{
+
+}

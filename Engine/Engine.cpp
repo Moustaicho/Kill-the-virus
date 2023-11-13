@@ -60,7 +60,7 @@ void Engine::AddScene(Scene* newScene)
 void Engine::LoadScene(std::string name)
 {
 	assert(scenes.find(name) != scenes.end() && "Could not find Scene!");
-
+	scenes[currentScene]->EndScene();
 	currentScene = name;
 	scenes[currentScene]->InitializeScene();
 }

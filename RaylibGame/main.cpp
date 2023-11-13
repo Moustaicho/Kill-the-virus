@@ -1,5 +1,6 @@
 #include "Engine.h"
 #include "FontLibrary.h"
+#include "TextureHolder.h"
 #include "Menu.h"
 #include "Game.h"
 #include "Credit.h"
@@ -14,7 +15,9 @@ int main(void)
 {
     //---------------Instatiate game------------------
     Engine* gameEngine = Engine::GetInstance();
-
+    //--------------Add Textures here-----------------
+    TextureHolder::GetInstance()->AddTexture("mask", LoadTexture("Assets/Shaders/mask.png"));
+    TextureHolder::GetInstance()->AddTexture("plasma", LoadTexture("Assets/Shaders/plasma.png"));
     //----------------Add Fonts here------------------
     Font font = LoadFont("Assets/Font/monofonto.otf");
     FontLibrary* fontLibrary = FontLibrary::GetInstance();

@@ -15,6 +15,7 @@ public:
 	void InitializeScene();
 	void UpdateScene();
 	void DrawScene();
+	void EndScene();
 
 	void AddGameObject(GameObject* gameobject);
 

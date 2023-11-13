@@ -52,6 +52,11 @@ void Player::Draw()
     DrawRing({ center.x + offsetRadar.x, center.y + offsetRadar.y }, currentRadius-5, currentRadius, 0, 360, 24, {0, 255, 0, 255});
 }
 
+void Player::End()
+{
+
+}
+
 void Player::MoveScreen()
 {
     SetPosition(GetPosition() + move);

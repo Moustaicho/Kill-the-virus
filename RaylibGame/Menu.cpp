@@ -67,14 +67,15 @@ void Menu::Start()
 	camera.fovy = 45.0f;                                // Camera field-of-view Y
 	camera.projection = CAMERA_PERSPECTIVE;
 
-	Mesh sphere = GenMeshSphere(1, 16, 16);
+	sphere = GenMeshSphere(1, 16, 16);
 	sphereModel = LoadModelFromMesh(sphere);
-	shaderVirus = LoadShader(0, TextFormat("Assets/Shaders/S_Virus.fs", GLSL_VERSION));
 
-	Texture texDiffuse = LoadTexture("Assets/Shaders/plasma.png");
+	shaderVirus = LoadShader(TextFormat("Assets/Shaders/S_Virus.vs", GLSL_VERSION), TextFormat("Assets/Shaders/S_Virus.fs", GLSL_VERSION));
+	
+	Texture texDiffuse = TextureHolder::GetInstance()->GetTexture("plasma");
 	sphereModel.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = texDiffuse;
-
-	Texture texMask = LoadTexture("Assets/Shaders/mask.png");
+	
+	Texture texMask = TextureHolder::GetInstance()->GetTexture("mask");
 	sphereModel.materials[0].maps[MATERIAL_MAP_EMISSION].texture = texMask;
 	shaderVirus.locs[SHADER_LOC_MAP_EMISSION] = GetShaderLocation(shaderVirus, "mask");
 
@@ -93,7 +94,7 @@ void Menu::Update()
 	rotation.x += 1 * GetFrameTime();
 	rotation.y += 1 * GetFrameTime();
 	SetShaderValue(shaderVirus, shaderFrame, &framesCounter, SHADER_UNIFORM_INT);
-	sphereModel.transform = MatrixRotateXYZ(rotation);;
+	sphereModel.transform = MatrixRotateXYZ(rotation);
 	angle += 1 * GetFrameTime();
 	sPosition = RotateAround(sPosition, { engineRef->GetWindow()->GetSize().x / 2.0f - MeasureTextEx(FontLibrary::GetInstance()->GetFont("Monto"), title.c_str(), fontSize, 5).x / 2, 50 }, 1*GetFrameTime());
 
@@ -116,4 +117,10 @@ void Menu::Draw()
 
 	GameObject::Draw();
 
+}
+
+void Menu::End()
+{
+	UnloadMesh(sphere);
+	UnloadShader(shaderVirus);
 }

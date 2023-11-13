@@ -54,6 +54,11 @@ void UIButton::Draw()
 	DrawText(text.c_str(), box.x + margin.x, box.y + margin.y, textSize, colorText);
 }
 
+void UIButton::End()
+{
+
+}
+
 void UIButton::SetText(std::string text)
 {
 	this->text = text;

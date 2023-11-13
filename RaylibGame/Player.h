@@ -22,5 +22,6 @@ public:
 	void Start();
 	void Update();
 	void Draw();
+	void End();
 };
 

@@ -15,3 +15,7 @@ void GameUI::Update()
 void GameUI::Draw()
 {
 }
+
+void GameUI::End()
+{
+}

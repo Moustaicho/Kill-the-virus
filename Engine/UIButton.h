@@ -25,6 +25,7 @@ public:
 	void Start();
 	void Update();
 	void Draw();
+	void End();
 
 	void SetText(std::string text);
 	void SetTextSize(int size);
