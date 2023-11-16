@@ -16,6 +16,11 @@ void Window::SetPosition(int x, int y)
 	SetWindowPosition(x, y);
 }
 
+Vector2i Window::GetPosition()
+{
+	return position;
+}
+
 void Window::SetSize(int width, int height)
 {
 	size = { width, height };

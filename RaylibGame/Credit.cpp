@@ -27,6 +27,9 @@ void Credit::Start()
 		Engine* engine = Engine::GetInstance();
 		engine->LoadScene("MenuScene");
 	};
+	buttonBack.SetBaseColor({ 0,255,0,100 });
+	buttonBack.SetHoverColor({ 0,255,0,255 });
+	buttonBack.SetClickColor({ 100,255,100,255 });
 
 	GameObject::Start();
 }

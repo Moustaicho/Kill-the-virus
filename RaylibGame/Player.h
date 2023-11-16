@@ -5,20 +5,17 @@
 class Player : public GameObject
 {
 private:
-	Vector2 center;
 	Vector2 move;
 	bool isMoving = false;
 	float speed = 5.0f;
-	Engine& gameref;
+	Engine* engineRef;
 
-	//Virus Detector
-	Vector2 offsetRadar = {150, -150};
-	float currentRadius = 10;
-	float detectorSpeed = 1;
+	int score;
+
 private:
 	void MoveScreen();
 public:
-	Player(Engine& ref);
+	Player();
 	void Start();
 	void Update();
 	void Draw();

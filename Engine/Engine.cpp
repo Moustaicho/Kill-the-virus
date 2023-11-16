@@ -22,7 +22,6 @@ void Engine::Initialize()
 {
 	InitAudioDevice();
 	scenes[currentScene]->InitializeScene();
-
 	SetTargetFPS(60);
 }
 void Engine::Update()
@@ -36,6 +35,12 @@ void Engine::Update()
 		ClearBackground(backgroundColor);
 
 		scenes[currentScene]->DrawScene();
+
+		if (customCursor)
+		{
+			HideCursor();
+			DrawTextureRec(*textureCursor, { 0.0f, 0.0f, 24.0f, 24.0f }, { GetMousePosition().x, GetMousePosition().y }, WHITE);
+		}
 
 		EndDrawing();
 	}
@@ -75,6 +80,11 @@ void Engine::SetBackgroundColor(Color color)
 	backgroundColor = color;
 }
 
+Scene* Engine::GetCurrentScene()
+{
+	return scenes[currentScene];
+}
+
 int Engine::GetCurrentMonitor()
 {
 	return currentMonitor;
@@ -83,4 +93,10 @@ int Engine::GetCurrentMonitor()
 void Engine::CloseGame()
 {
 	closeGame = true;
+}
+
+void Engine::SetCustomCursor(Texture texture)
+{
+	customCursor = true;
+	textureCursor = &texture;
 }

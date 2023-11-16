@@ -30,35 +30,47 @@ Menu::Menu() : GameObject("Menu")
 
 void Menu::Start()
 {	
+	track = LoadMusicStream("Assets/Audio/Music/Octahedron - CAMERA_SURVEILLANCE.wav");
+	PlayMusicStream(track);
+
 	buttonPlay.SetText("PLAY");
 	buttonPlay.SetTextSize(25);
-	buttonPlay.SetPosition({ engineRef->GetWindow()->GetSize().x / 2.0f - buttonPlay.GetButtonBox().width/2.0f, engineRef->GetWindow()->GetSize().y - 250.0f});
+	buttonPlay.SetPosition({ engineRef->GetWindow()->GetSize().x / 2.0f - buttonPlay.GetButtonBox().width/2.0f, engineRef->GetWindow()->GetSize().y - 100.0f });
 	buttonPlay.CenterText();
 	buttonPlay.actionFunction = []()
 	{
 		Engine* engine = Engine::GetInstance();
 		engine->LoadScene("GameScene");
 	};
+	buttonPlay.SetBaseColor({0,255,0,100});
+	buttonPlay.SetHoverColor({0,255,0,255});
+	buttonPlay.SetClickColor({100,255,100,255});
 
 	buttonCredit.SetText("CREDITS");
 	buttonCredit.SetTextSize(25);
-	buttonCredit.SetPosition({ engineRef->GetWindow()->GetSize().x / 2.0f - buttonPlay.GetButtonBox().width / 2.0f, engineRef->GetWindow()->GetSize().y - 175.0f });
+	buttonCredit.SetPosition({ engineRef->GetWindow()->GetSize().x - buttonPlay.GetButtonBox().width / 2.0f - 100, engineRef->GetWindow()->GetSize().y - 100.0f });
 	buttonCredit.CenterText();
 	buttonCredit.actionFunction = []()
 	{
 		Engine* engine = Engine::GetInstance();
 		engine->LoadScene("CreditScene");
 	};
+	buttonCredit.SetBaseColor({0,0,255,100});
+	buttonCredit.SetHoverColor({0,0,255,255});
+	buttonCredit.SetClickColor({100,100,255,255});
 
 	buttonQuit.SetText("QUIT");
 	buttonQuit.SetTextSize(25);
-	buttonQuit.SetPosition({ engineRef->GetWindow()->GetSize().x / 2.0f - buttonPlay.GetButtonBox().width / 2.0f, engineRef->GetWindow()->GetSize().y - 100.0f });
+	buttonQuit.SetPosition({ 100 - buttonPlay.GetButtonBox().width / 2.0f , engineRef->GetWindow()->GetSize().y - 100.0f });
 	buttonQuit.CenterText();
 	buttonQuit.actionFunction = []()
 	{
 		Engine* engine = Engine::GetInstance();
 		engine->CloseGame();
 	};
+	buttonQuit.SetBaseColor({255,0,0,100});
+	buttonQuit.SetHoverColor({255,0,0,255});
+	buttonQuit.SetClickColor({255,100,100,255});
 
 	camera = { 0 };
 	camera.position = Vector3{ 0.0f, 1.0f, 5.0f };    // Camera position
@@ -91,6 +103,7 @@ void Menu::Start()
 
 void Menu::Update()
 {
+	UpdateMusicStream(track);
 	rotation.x += 1 * GetFrameTime();
 	rotation.y += 1 * GetFrameTime();
 	SetShaderValue(shaderVirus, shaderFrame, &framesCounter, SHADER_UNIFORM_INT);
@@ -105,8 +118,8 @@ void Menu::Draw()
 {
 	ClearBackground(BLANK);
 	
-	DrawTextEx(FontLibrary::GetInstance()->GetFont("Monto"), title.c_str(), sPosition, fontSize, 5, { 0,255,0,255 });
-	DrawTextEx(FontLibrary::GetInstance()->GetFont("Monto"), title.c_str(), { engineRef->GetWindow()->GetSize().x / 2.0f - MeasureTextEx(FontLibrary::GetInstance()->GetFont("Monto"), title.c_str(), fontSize, 5).x / 2, 50 }, fontSize, 5, {255,0,0,255});
+	DrawTextEx(FontLibrary::GetInstance()->GetFont("Monto"), title.c_str(), sPosition, fontSize, 5, { 0,255,0,200 });
+	DrawTextEx(FontLibrary::GetInstance()->GetFont("Monto"), title.c_str(), { engineRef->GetWindow()->GetSize().x / 2.0f - MeasureTextEx(FontLibrary::GetInstance()->GetFont("Monto"), title.c_str(), fontSize, 5).x / 2, 50 }, fontSize, 5, {255,0,0,200});
 	
 
 	BeginMode3D(camera);

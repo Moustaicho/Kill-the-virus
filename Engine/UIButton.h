@@ -34,5 +34,9 @@ public:
 	Rectangle GetButtonBox();
 
 	void CenterText();
+
+	void SetBaseColor(Color color);
+	void SetClickColor(Color color);
+	void SetHoverColor(Color color);
 };
 

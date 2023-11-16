@@ -10,6 +10,7 @@ public:
 	Window(int width, int height, const char* title);
 
 	void SetPosition(int x, int y);
+	Vector2i GetPosition();
 	void SetSize(int width, int height);
 
 	Vector2i GetSize();

@@ -6,6 +6,7 @@
 
 #include "raylib.h"
 
+#include "TextureHolder.h"
 #include "Scene.h"
 #include "Window.h"
 
@@ -22,6 +23,9 @@ private:
 	std::map<std::string, Scene*> scenes;
 	Window* window;
 	Color backgroundColor;
+
+	bool customCursor = false;
+	Texture* textureCursor;
 private:
 	Engine();
 public:
@@ -36,10 +40,13 @@ public:
 
 	void AddScene(Scene* newScene);
 	void LoadScene(std::string name);
+	Scene* GetCurrentScene();
 
 	Window* GetWindow();
 	void SetBackgroundColor(Color color);
 	int GetCurrentMonitor();
 
 	void CloseGame();
+
+	void SetCustomCursor(Texture texture);
 };

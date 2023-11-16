@@ -90,3 +90,16 @@ void UIButton::CenterText()
 	int textWidth = MeasureText(text.c_str(), textSize);
 	margin.x = (box.width - textWidth) /2;
 }
+
+void UIButton::SetBaseColor(Color color)
+{
+	colorBase = color;
+}
+void UIButton::SetClickColor(Color color)
+{
+	colorClick = color;
+}
+void UIButton::SetHoverColor(Color color)
+{
+	colorHover = color;
+}

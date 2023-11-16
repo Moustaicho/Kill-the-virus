@@ -33,6 +33,12 @@
     <ClCompile Include="Credit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Virus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Virus3D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Menu.h">
@@ -48,6 +54,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Credit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Virus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Virus3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
