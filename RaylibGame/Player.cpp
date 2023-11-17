@@ -18,19 +18,19 @@ void Player::Update()
     move = { 0, 0 };
     if (IsKeyDown(KEY_A))
     {
-        move.x = -speed;
+        move.x = -speed * GetFrameTime();
     }
     if (IsKeyDown(KEY_D))
     {
-        move.x = speed;
+        move.x = speed * GetFrameTime();
     }
     if (IsKeyDown(KEY_W))
     {
-        move.y = -speed;
+        move.y = -speed * GetFrameTime();
     }
     if (IsKeyDown(KEY_S))
     {
-        move.y = speed;
+        move.y = speed * GetFrameTime();
     }
     MoveScreen();
 }

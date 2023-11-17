@@ -6,7 +6,10 @@ GameUI::GameUI(Game* ref) : GameObject("GameUI")
     , screenWidth(GetMonitorWidth(engineRef->GetCurrentMonitor()))
     , screenHeight(GetMonitorHeight(engineRef->GetCurrentMonitor()))
     , scoreUI("SCORE: 000000")
+    , quitText("Press 'ESC' to end")
+
 {
+
 }
 
 void GameUI::FindVirus()
@@ -30,7 +33,10 @@ void GameUI::FindVirus()
 
 void GameUI::Start()
 {
+    engineRef->ShowCustomCursor(false);
     center = { engineRef->GetWindow()->GetSize().x / 2.0f, engineRef->GetWindow()->GetSize().y / 2.0f };
+
+    GameObject::Start();
 }
 
 void GameUI::Update()
@@ -41,7 +47,7 @@ void GameUI::Update()
     }
 
 
-    currentRadius += detectorSpeed;
+    currentRadius += detectorSpeed * GetFrameTime();
     if (currentRadius >= 100)
     {
         currentRadius = 1;
@@ -49,6 +55,8 @@ void GameUI::Update()
 
     //bool virusHit = CheckCollisionCircles({ center.x, center.y }, 100, { (-GetWindowPosition().x + 250), (-GetWindowPosition().y + 250) }, 20);
     //std::cout << "Virus detected: " << virusHit << std::endl;
+
+    GameObject::Update();
 }
 
 void GameUI::Draw()
@@ -58,8 +66,8 @@ void GameUI::Draw()
         DrawFPS(10, 10);
     }
 
-
     DrawTextEx(FontLibrary::GetInstance()->GetFont("Monto"), scoreUI.c_str(), { engineRef->GetWindow()->GetSize().x / 2.0f - MeasureTextEx(FontLibrary::GetInstance()->GetFont("Monto"), scoreUI.c_str(), scoreSize, 5).x / 2, 10 }, scoreSize, 1, { 0,255,0,255 });
+    DrawTextEx(FontLibrary::GetInstance()->GetFont("Monto"), quitText.c_str(), { 10, 15 }, 15, 1, { 0,255,0,255 });
 
     DrawCircleLines(center.x, center.y , 100, WHITE);
     
@@ -71,8 +79,11 @@ void GameUI::Draw()
     DrawRing({ center.x + offsetRadar.x, center.y + offsetRadar.y }, currentRadius - 5, currentRadius, 0, 360, 24, { 0, 255, 0, 255 });
 
     FindVirus();
+
+    GameObject::Draw();
 }
 
 void GameUI::End()
 {
+    GameObject::End();
 }

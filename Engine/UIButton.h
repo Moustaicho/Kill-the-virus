@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject.h"
+#include "FontLibrary.h"
 class UIButton : public GameObject
 {
 private:
@@ -7,7 +8,10 @@ private:
 	int textSize;
 	Vector2i margin;
 
-	Color colorText;
+	Color currentTextColor;
+	Color colorTextBase;
+	Color colorTextClick;
+	Color colorTextHover;
 
 	Color currentButtonColor;
 	Color colorBase;
@@ -15,6 +19,8 @@ private:
 	Color colorHover;
 
 	Rectangle box;
+
+	Font textFont;
 
 	bool mouseHover;
 public:
@@ -38,5 +44,11 @@ public:
 	void SetBaseColor(Color color);
 	void SetClickColor(Color color);
 	void SetHoverColor(Color color);
+
+	void SetTextBaseColor(Color color);
+	void SetTextClickColor(Color color);
+	void SetTextHoverColor(Color color);
+
+	void SetFont(Font font);
 };
 

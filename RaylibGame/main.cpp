@@ -6,6 +6,8 @@
 #include "Credit.h"
 #include "GameUI.h"
 #include "Player.h"
+#include "Tutorial.h"
+#include "Score.h"
 #include "raymath.h"
 
 //X is Right
@@ -17,8 +19,8 @@ int main(void)
     //---------------Instatiate game------------------
     Engine* gameEngine = Engine::GetInstance();
     //--------------Add Textures here-----------------
-    TextureHolder::GetInstance()->AddTexture("mask", LoadTexture("Assets/Shaders/mask.png"));
-    TextureHolder::GetInstance()->AddTexture("plasma", LoadTexture("Assets/Shaders/plasma.png"));
+    TextureHolder::GetInstance()->AddTexture("mask", LoadTexture("Assets/Sprites/mask.png"));
+    TextureHolder::GetInstance()->AddTexture("plasma", LoadTexture("Assets/Sprites/plasma.png"));
     TextureHolder::GetInstance()->AddTexture("cursor", LoadTexture("Assets/Sprites/Cursor.png"));
     gameEngine->SetCustomCursor(TextureHolder::GetInstance()->GetTexture("cursor"));
     //----------------Add Fonts here------------------
@@ -33,6 +35,10 @@ int main(void)
     gameEngine->AddScene(gameScene);
     Scene* creditScene = new Scene("CreditScene");
     gameEngine->AddScene(creditScene);
+    Scene* tutorialScene = new Scene("TutorialScene");
+    gameEngine->AddScene(tutorialScene);
+    Scene* scoreScene = new Scene("ScoreScene");
+    gameEngine->AddScene(scoreScene);
 
     Menu menu;
     menuScene->AddGameObject(&menu);
@@ -40,9 +46,14 @@ int main(void)
     gameScene->AddGameObject(&game);
     Credit credit;
     creditScene->AddGameObject(&credit);
+    Tutorial tutorial;
+    tutorialScene->AddGameObject(&tutorial);
+    Score score;
+    scoreScene->AddGameObject(&score);
 
     Player player;
     gameScene->AddGameObject(&player);
+    tutorialScene->AddGameObject(&player);
 
     GameUI gameUI(&game);
     gameScene->AddGameObject(&gameUI);

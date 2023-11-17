@@ -1,0 +1,50 @@
+#include "Tutorial.h"
+
+Tutorial::Tutorial() : GameObject("Tutorial")
+	, engineRef(Engine::GetInstance())
+	, title("How To Play")
+	, description("Use the {W, S, A ,D} keys to move the screen!")
+	, fontSizeTitle(50)
+	, fontSizeDescription(20)
+	, buttonBack()
+{
+	AddChild(&buttonBack);
+}
+
+void Tutorial::Start()
+{
+	buttonBack.SetText("BACK");
+	buttonBack.SetTextSize(25);
+	buttonBack.SetPosition({ engineRef->GetWindow()->GetSize().x / 2.0f - buttonBack.GetButtonBox().width / 2.0f, engineRef->GetWindow()->GetSize().y - 100.0f });
+	buttonBack.CenterText();
+	buttonBack.actionFunction = []()
+		{
+			Engine* engine = Engine::GetInstance();
+			engine->LoadScene("MenuScene");
+		};
+	buttonBack.SetBaseColor({ 0,255,0,100 });
+	buttonBack.SetHoverColor({ 0,255,0,255 });
+	buttonBack.SetClickColor({ 100,255,100,255 });
+
+	GameObject::Start();
+}
+
+void Tutorial::Update()
+{
+
+
+	GameObject::Update();
+}
+
+void Tutorial::Draw()
+{
+	ClearBackground(BLANK);
+	DrawTextEx(FontLibrary::GetInstance()->GetFont("Monto"), title.c_str(), { engineRef->GetWindow()->GetSize().x / 2.0f - MeasureTextEx(FontLibrary::GetInstance()->GetFont("Monto"), title.c_str(), fontSizeTitle, 5).x / 2, 50 }, fontSizeTitle, 5, { 0,255,0,200 });
+	DrawTextEx(FontLibrary::GetInstance()->GetFont("Monto"), description.c_str(), { engineRef->GetWindow()->GetSize().x / 2.0f - MeasureTextEx(FontLibrary::GetInstance()->GetFont("Monto"), description.c_str(), fontSizeDescription, 1).x / 2,200}, fontSizeDescription, 1, { 0,255,0,200 });
+	
+	GameObject::Draw();
+}
+
+void Tutorial::End()
+{
+}

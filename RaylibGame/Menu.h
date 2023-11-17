@@ -21,6 +21,7 @@ private:
 	UIButton buttonPlay;
 	UIButton buttonCredit;
 	UIButton buttonQuit;
+	UIButton buttonTutorial;
 
 	Camera camera;
 	Mesh sphere;

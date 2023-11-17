@@ -22,14 +22,18 @@ Menu::Menu() : GameObject("Menu")
 	, buttonPlay()
 	, buttonCredit()
 	, buttonQuit()
+	, buttonTutorial()
 {
 	AddChild(&buttonPlay);
 	AddChild(&buttonCredit);
 	AddChild(&buttonQuit);
+	AddChild(&buttonTutorial);
 }
 
 void Menu::Start()
 {	
+	engineRef->ShowCustomCursor(true);
+
 	track = LoadMusicStream("Assets/Audio/Music/Octahedron - CAMERA_SURVEILLANCE.wav");
 	PlayMusicStream(track);
 
@@ -71,6 +75,22 @@ void Menu::Start()
 	buttonQuit.SetBaseColor({255,0,0,100});
 	buttonQuit.SetHoverColor({255,0,0,255});
 	buttonQuit.SetClickColor({255,100,100,255});
+
+	buttonTutorial.SetText("How To Play");
+	buttonTutorial.SetTextSize(25);
+	buttonTutorial.SetPosition({ engineRef->GetWindow()->GetSize().x / 2.0f - buttonPlay.GetButtonBox().width / 2.0f, engineRef->GetWindow()->GetSize().y - 50.0f });
+	buttonTutorial.CenterText();
+	buttonTutorial.actionFunction = []()
+		{
+			Engine* engine = Engine::GetInstance();
+			engine->LoadScene("TutorialScene");
+		};
+	buttonTutorial.SetBaseColor({0,0,0,0});
+	buttonTutorial.SetHoverColor({0,0,0,0});
+	buttonTutorial.SetClickColor({0,0,0,0});
+	buttonTutorial.SetTextBaseColor({0,255,0,100});
+	buttonTutorial.SetTextHoverColor({0,255,0,255});
+	buttonTutorial.SetTextClickColor({255,0,0,255});
 
 	camera = { 0 };
 	camera.position = Vector3{ 0.0f, 1.0f, 5.0f };    // Camera position

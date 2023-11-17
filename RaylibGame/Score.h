@@ -1,21 +1,21 @@
 #pragma once
 #include "Engine.h"
 #include "GameObject.h"
+#include "UIButton.h"
 
-class Player : public GameObject
+class Score : public GameObject
 {
 private:
-	Vector2 move;
-	bool isMoving = false;
-	float speed = 300.0f;
 	Engine* engineRef;
 
-	int score;
+	std::string title;
+	std::string description;
+	std::string score;
 
-private:
-	void MoveScreen();
+	UIButton buttonMenu;
 public:
-	Player();
+	Score();
+
 	void Start();
 	void Update();
 	void Draw();

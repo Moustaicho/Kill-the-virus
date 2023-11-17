@@ -25,6 +25,7 @@ private:
 	Color backgroundColor;
 
 	bool customCursor = false;
+	bool showCustomCursor = true;
 	Texture* textureCursor;
 private:
 	Engine();
@@ -49,4 +50,5 @@ public:
 	void CloseGame();
 
 	void SetCustomCursor(Texture texture);
+	void ShowCustomCursor(bool state);
 };

@@ -136,6 +136,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Score.cpp" />
+    <ClCompile Include="Tutorial.cpp" />
     <ClCompile Include="Virus.cpp" />
     <ClCompile Include="Virus3D.cpp" />
   </ItemGroup>
@@ -150,6 +152,8 @@
     <ClInclude Include="GameUI.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Score.h" />
+    <ClInclude Include="Tutorial.h" />
     <ClInclude Include="Virus.h" />
     <ClInclude Include="Virus3D.h" />
   </ItemGroup>

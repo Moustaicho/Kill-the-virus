@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.h"
+#include "UIButton.h"
 #include "Game.h"
 #include "GameObject.h"
 #include "Fontlibrary.h"
@@ -14,10 +15,12 @@ private:
 	//Virus Detector
 	Vector2 offsetRadar = { 150, -150 };
 	float currentRadius = 10;
-	float detectorSpeed = 1;
+	float detectorSpeed = 50;
 
 	int screenWidth;
 	int screenHeight;
+
+	std::string quitText;
 
 	std::string scoreUI;
 	float scoreSize = 25;

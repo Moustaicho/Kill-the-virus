@@ -30,7 +30,7 @@ void Game::Start()
 	track = LoadMusicStream("Assets/Audio/Music/Octahedron - CAMERA_SURVEILLANCE.wav");
 	PlayMusicStream(track);
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 15; i++)
 	{
 		SpawnVirus();
 	}
@@ -42,9 +42,9 @@ void Game::Start()
 void Game::Update()
 {
 	UpdateMusicStream(track);
-	if (IsKeyPressed(KEY_SPACE))
+	if (IsKeyPressed(KEY_ESCAPE))
 	{
-		engineRef->LoadScene("MenuScene");
+		engineRef->LoadScene("ScoreScene");
 	}
 
 	GameObject::Update();

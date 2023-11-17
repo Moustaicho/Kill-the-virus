@@ -2,10 +2,14 @@
 
 UIButton::UIButton() : GameObject("UIButton")
 	, text("Button")
+	, textFont(FontLibrary::GetInstance()->GetFont("Default"))
 	, textSize(10)
 	, margin({10,10})
 	, box({ 0, 0, 150, 50 })
-	, colorText(BLACK)
+	, colorTextBase(BLACK)
+	, colorTextClick(BLACK)
+	, colorTextHover(BLACK)
+	, currentTextColor(colorTextBase)
 	, colorBase(WHITE)
 	, colorClick(DARKGRAY)
 	, colorHover(LIGHTGRAY)
@@ -13,6 +17,7 @@ UIButton::UIButton() : GameObject("UIButton")
 	, mouseHover(false)
 	
 {
+
 }
 
 void UIButton::Start()
@@ -27,6 +32,7 @@ void UIButton::Update()
 		if(IsMouseButtonDown(0))
 		{
 			currentButtonColor = colorClick;
+			currentTextColor = colorTextClick;
 		}
 		else if (IsMouseButtonReleased(0))
 		{
@@ -38,11 +44,13 @@ void UIButton::Update()
 		else
 		{
 			currentButtonColor = colorHover;
+			currentTextColor = colorTextHover;
 		}
 	}
 	else 
 	{ 
 		currentButtonColor = colorBase;
+		currentTextColor = colorTextBase;
 	}
 }
 
@@ -51,7 +59,7 @@ void UIButton::Draw()
 	box.x = GetPosition().x;
 	box.y = GetPosition().y;
 	DrawRectangleRec(box, currentButtonColor);
-	DrawText(text.c_str(), box.x + margin.x, box.y + margin.y, textSize, colorText);
+	DrawTextEx(textFont, text.c_str(), { box.x + margin.x, box.y + margin.y }, textSize, 1, currentTextColor);
 }
 
 void UIButton::End()
@@ -102,4 +110,22 @@ void UIButton::SetClickColor(Color color)
 void UIButton::SetHoverColor(Color color)
 {
 	colorHover = color;
+}
+
+void UIButton::SetTextBaseColor(Color color)
+{
+	colorTextBase = color;
+}
+void UIButton::SetTextClickColor(Color color)
+{
+	colorTextClick = color;
+}
+void UIButton::SetTextHoverColor(Color color)
+{
+	colorTextHover = color;
+}
+
+void UIButton::SetFont(Font font)
+{
+	textFont = font;
 }

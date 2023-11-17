@@ -24,7 +24,8 @@ void Virus::Start()
 
 void Virus::Update()
 {
-	SetPosition({ -GetWindowPosition().x + screenPosition.x, -GetWindowPosition().y + screenPosition.y });
+	SetPosition({ -GetWindowPosition().x + (int)screenPosition.x, -GetWindowPosition().y + (int)screenPosition.y });
+
 	virusModel->SetPosition({ GetPosition().x-25, GetPosition().y-25 });
 	GameObject::Update();
 }

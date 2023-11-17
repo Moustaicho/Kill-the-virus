@@ -22,7 +22,7 @@ void Engine::Initialize()
 {
 	InitAudioDevice();
 	scenes[currentScene]->InitializeScene();
-	SetTargetFPS(60);
+	SetTargetFPS(120);
 }
 void Engine::Update()
 {
@@ -39,7 +39,10 @@ void Engine::Update()
 		if (customCursor)
 		{
 			HideCursor();
-			DrawTextureRec(*textureCursor, { 0.0f, 0.0f, 24.0f, 24.0f }, { GetMousePosition().x, GetMousePosition().y }, WHITE);
+			if (showCustomCursor)
+			{
+				DrawTextureRec(*textureCursor, { 0.0f, 0.0f, 24.0f, 24.0f }, { GetMousePosition().x, GetMousePosition().y }, WHITE);
+			}
 		}
 
 		EndDrawing();
@@ -99,4 +102,9 @@ void Engine::SetCustomCursor(Texture texture)
 {
 	customCursor = true;
 	textureCursor = &texture;
+}
+
+void Engine::ShowCustomCursor(bool state)
+{
+	showCustomCursor = state;
 }
