@@ -15,6 +15,30 @@ void Player::Start()
 
 void Player::Update()
 {
+    if (IsKeyPressed(KEY_F2))
+    {
+        if (GetMasterVolume() - 0.1f <= 0)
+        {
+            SetMasterVolume(0.0f);
+        }
+        else
+        {
+            SetMasterVolume(GetMasterVolume() - 0.1f);
+        }
+    }
+    if (IsKeyPressed(KEY_F3))
+    {
+        if (GetMasterVolume() + 0.1f >= 1)
+        {
+            SetMasterVolume(1.0f);
+        }
+        else
+        {
+            SetMasterVolume(GetMasterVolume() + 0.1f);
+        }
+       
+    }
+
     move = { 0, 0 };
     if (IsKeyDown(KEY_A))
     {

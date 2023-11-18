@@ -75,6 +75,11 @@ GameObject* GameObject::GetChildAt(int i)
 	return children[i];
 }
 
+void GameObject::RemoveAllChildren()
+{
+	children.clear();
+}
+
 void GameObject::Start()
 {
 	for (GameObject* gameobject : children)

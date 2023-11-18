@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine.h"
 #include "GameObject.h"
+#include "MusicHolder.h"
 #include "UIButton.h"
 
 class Score : public GameObject
@@ -13,6 +14,8 @@ private:
 	std::string score;
 
 	UIButton buttonMenu;
+
+	Music track;
 public:
 	Score();
 

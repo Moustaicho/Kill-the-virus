@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine.h"
 #include "GameObject.h"
+#include "MusicHolder.h"
 #include "UIButton.h"
 #include "FontLibrary.h"
 
@@ -15,6 +16,8 @@ private:
 
 	int fontSizeTitle;
 	int fontSizeDescription;
+
+	Music track;
 public:
 	Tutorial();
 

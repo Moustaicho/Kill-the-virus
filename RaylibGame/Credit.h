@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine.h"
 #include "FontLibrary.h"
+#include "MusicHolder.h"
 #include "GameObject.h"
 #include "UIButton.h"
 
@@ -20,6 +21,8 @@ private:
 	int sizeMusic;
 
 	UIButton buttonBack;
+
+	Music track;
 public:
 	Credit();
 

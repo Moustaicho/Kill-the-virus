@@ -12,6 +12,9 @@ Score::Score() : GameObject("Score")
 
 void Score::Start()
 {
+	track = *MusicHolder::GetInstance()->GetMusic("M_GameOver");
+	PlayMusicStream(track);
+
 	engineRef->ShowCustomCursor(true);
 
 	buttonMenu.SetText("MENU");
@@ -32,6 +35,7 @@ void Score::Start()
 
 void Score::Update()
 {
+	UpdateMusicStream(track);
 	GameObject::Update();
 }
 

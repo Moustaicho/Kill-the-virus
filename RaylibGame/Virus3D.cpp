@@ -1,28 +1,23 @@
 #include "Virus3D.h"
 
-Virus3D::Virus3D() : GameObject("Virus3D")
+Virus3D::Virus3D(Camera& camera) : GameObject("Virus3D")
+	, camera(camera)
 {
 }
 
 void Virus3D::Start()
 {
-	target = LoadRenderTexture(50, 50);
+	target = *TextureHolder::GetInstance()->GetRenderTexture("RT_Virus");
 
-	camera.position = Vector3{ 0.0f, 0.0f, 3.0f };
-	camera.target = Vector3{ 0.0f, 0.0f, 0.0f };
-	camera.up = Vector3{ 0.0f, 1.0f, 0.0f };
-	camera.fovy = 45.0f;
-	camera.projection = CAMERA_PERSPECTIVE;
+	sphere = *ModelHolder::GetInstance()->GetMesh("Mesh_Virus");
+	sphereModel = *ModelHolder::GetInstance()->GetModel("Model_Virus");
 
-	sphere = GenMeshSphere(1, 16, 16);
-	sphereModel = LoadModelFromMesh(sphere);
+	shaderVirus = *ShaderHolder::GetInstance()->GetShader("S_Virus");
 
-	shaderVirus = LoadShader(TextFormat("Assets/Shaders/S_Virus.vs", GLSL_VERSION), TextFormat("Assets/Shaders/S_Virus.fs", GLSL_VERSION));
-
-	Texture texDiffuse = TextureHolder::GetInstance()->GetTexture("plasma");
+	Texture texDiffuse = *TextureHolder::GetInstance()->GetTexture("plasma");
 	sphereModel.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = texDiffuse;
 
-	Texture texMask = TextureHolder::GetInstance()->GetTexture("mask");
+	Texture texMask = *TextureHolder::GetInstance()->GetTexture("mask");
 	sphereModel.materials[0].maps[MATERIAL_MAP_EMISSION].texture = texMask;
 	shaderVirus.locs[SHADER_LOC_MAP_EMISSION] = GetShaderLocation(shaderVirus, "mask");
 
@@ -47,14 +42,16 @@ void Virus3D::Update()
 	EndMode3D();
 	EndTextureMode();
 }
-
+#include <iostream>
 void Virus3D::Draw()
 {
-	DrawTexture(target.texture, GetPosition().x, GetPosition().y, WHITE); //This should 
+	if (GetPosition().x >= -limitDrawThreshold && GetPosition().x <= 500+limitDrawThreshold || GetPosition().y >= -limitDrawThreshold && GetPosition().y <= 500 + limitDrawThreshold)
+	{
+		DrawTexture(target.texture, GetPosition().x, GetPosition().y, WHITE);
+	}
 }
 
 void Virus3D::End()
 {
-	UnloadMesh(sphere);
-	UnloadShader(shaderVirus);
+
 }

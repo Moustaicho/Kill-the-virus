@@ -7,6 +7,7 @@ Engine::Engine()
 {
 	window->SetPosition(GetMonitorWidth(currentMonitor) / 2 - window->GetSize().x / 2.0f, GetMonitorHeight(currentMonitor) / 2 - window->GetSize().y / 2.0f);
 	SetExitKey(KEY_NULL);
+	InitAudioDevice();
 }
 
 Engine* Engine::GetInstance()
@@ -20,7 +21,7 @@ Engine* Engine::GetInstance()
 
 void Engine::Initialize()
 {
-	InitAudioDevice();
+	
 	scenes[currentScene]->InitializeScene();
 	SetTargetFPS(120);
 }

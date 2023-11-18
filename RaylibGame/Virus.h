@@ -11,9 +11,10 @@ private:
 	Vector2 screenPosition;
 	Virus3D* virusModel;
 
+	Camera& camera;
 public:
-	Virus();
-	Virus(Vector2 position);
+	Virus(Camera& camera);
+	Virus(Vector2 position, Camera& camera);
 	~Virus();
 
 	void Start();

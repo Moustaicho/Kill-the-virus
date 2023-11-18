@@ -3,6 +3,8 @@
 #include "raymath.h"
 #include "FontLibrary.h"
 #include "TextureHolder.h"
+#include "MusicHolder.h"
+#include "ModelHolder.h"
 #include "GameObject.h"
 #include "UIButton.h"
 

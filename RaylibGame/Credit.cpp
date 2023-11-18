@@ -18,6 +18,9 @@ Credit::Credit() : GameObject("Credit")
 
 void Credit::Start()
 {
+	track = *MusicHolder::GetInstance()->GetMusic("M_Game");
+	PlayMusicStream(track);
+
 	buttonBack.SetText("BACK");
 	buttonBack.SetTextSize(25);
 	buttonBack.SetPosition({ engineRef->GetWindow()->GetSize().x / 2.0f - buttonBack.GetButtonBox().width / 2.0f, engineRef->GetWindow()->GetSize().y - 100.0f });
@@ -36,6 +39,7 @@ void Credit::Start()
 
 void Credit::Update()
 {
+	UpdateMusicStream(track);
 	GameObject::Update();
 }
 

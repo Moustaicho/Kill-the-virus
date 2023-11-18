@@ -2,6 +2,7 @@
 #include "Engine.h"
 #include "GameObject.h"
 #include "Virus.h"
+#include "MusicHolder.h"
 
 class Game : public GameObject
 {
@@ -10,6 +11,8 @@ private:
 	Music track;
 
 	std::vector<Virus*> enemies;
+
+	Camera camera;
 private:
 	void SpawnVirus();
 public:

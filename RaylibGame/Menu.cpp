@@ -34,7 +34,7 @@ void Menu::Start()
 {	
 	engineRef->ShowCustomCursor(true);
 
-	track = LoadMusicStream("Assets/Audio/Music/Octahedron - CAMERA_SURVEILLANCE.wav");
+	track = *MusicHolder::GetInstance()->GetMusic("M_Game");
 	PlayMusicStream(track);
 
 	buttonPlay.SetText("PLAY");
@@ -99,15 +99,15 @@ void Menu::Start()
 	camera.fovy = 45.0f;                                // Camera field-of-view Y
 	camera.projection = CAMERA_PERSPECTIVE;
 
-	sphere = GenMeshSphere(1, 16, 16);
-	sphereModel = LoadModelFromMesh(sphere);
+	sphere = *ModelHolder::GetInstance()->GetMesh("Mesh_Virus");
+	sphereModel = *ModelHolder::GetInstance()->GetModel("Model_Virus");
 
 	shaderVirus = LoadShader(TextFormat("Assets/Shaders/S_Virus.vs", GLSL_VERSION), TextFormat("Assets/Shaders/S_Virus.fs", GLSL_VERSION));
 	
-	Texture texDiffuse = TextureHolder::GetInstance()->GetTexture("plasma");
+	Texture texDiffuse = *TextureHolder::GetInstance()->GetTexture("plasma");
 	sphereModel.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = texDiffuse;
 	
-	Texture texMask = TextureHolder::GetInstance()->GetTexture("mask");
+	Texture texMask = *TextureHolder::GetInstance()->GetTexture("mask");
 	sphereModel.materials[0].maps[MATERIAL_MAP_EMISSION].texture = texMask;
 	shaderVirus.locs[SHADER_LOC_MAP_EMISSION] = GetShaderLocation(shaderVirus, "mask");
 
@@ -154,6 +154,5 @@ void Menu::Draw()
 
 void Menu::End()
 {
-	UnloadMesh(sphere);
-	UnloadShader(shaderVirus);
+
 }

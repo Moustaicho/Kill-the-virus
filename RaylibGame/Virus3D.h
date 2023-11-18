@@ -1,6 +1,8 @@
 #pragma once
 #include "GameObject.h"
 #include "TextureHolder.h"
+#include "ShaderHolder.h"
+#include "ModelHolder.h"
 #include "raymath.h"
 
 #if defined(PLATFORM_DESKTOP)
@@ -12,7 +14,7 @@
 class Virus3D : public GameObject
 {
 private:
-	Camera camera;
+	Camera& camera;
 	Mesh sphere;
 	Model sphereModel;
 	Shader shaderVirus;
@@ -21,8 +23,10 @@ private:
 	Vector3 rotation = { 0 };
 
 	RenderTexture2D target;
+
+	int limitDrawThreshold = 15;
 public:
-	Virus3D();
+	Virus3D(Camera& camera);
 	void Start();
 	void Update();
 	void Draw();
