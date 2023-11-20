@@ -2,11 +2,18 @@
 
 Virus3D::Virus3D(Camera& camera) : GameObject("Virus3D")
 	, camera(camera)
+	, rotation({ 0 })
+	, randRotation({ 0,0,0 })
+	, limitDrawThreshold(15)
 {
 }
 
 void Virus3D::Start()
 {
+	randRotation.x = rand() % (1) + -1.0f;
+	randRotation.y = rand() % (1) + -1.0f;
+	randRotation.z = rand() % (1) + -1.0f;
+
 	target = *TextureHolder::GetInstance()->GetRenderTexture("RT_Virus");
 
 	sphere = *ModelHolder::GetInstance()->GetMesh("Mesh_Virus");
@@ -29,8 +36,9 @@ void Virus3D::Start()
 
 void Virus3D::Update()
 {
-	rotation.x += 1 * GetFrameTime();
-	rotation.y += 1 * GetFrameTime();
+	rotation.x += randRotation.x * GetFrameTime();
+	rotation.y += randRotation.y * GetFrameTime();
+	rotation.z += randRotation.z * GetFrameTime();
 	SetShaderValue(shaderVirus, shaderFrame, &framesCounter, SHADER_UNIFORM_INT);
 	sphereModel.transform = MatrixRotateXYZ(rotation);
 

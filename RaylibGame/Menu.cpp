@@ -23,6 +23,8 @@ Menu::Menu() : GameObject("Menu")
 	, buttonCredit()
 	, buttonQuit()
 	, buttonTutorial()
+	, rotation({ 0 })
+	, angle(0)
 {
 	AddChild(&buttonPlay);
 	AddChild(&buttonCredit);
@@ -102,7 +104,7 @@ void Menu::Start()
 	sphere = *ModelHolder::GetInstance()->GetMesh("Mesh_Virus");
 	sphereModel = *ModelHolder::GetInstance()->GetModel("Model_Virus");
 
-	shaderVirus = LoadShader(TextFormat("Assets/Shaders/S_Virus.vs", GLSL_VERSION), TextFormat("Assets/Shaders/S_Virus.fs", GLSL_VERSION));
+	shaderVirus = *ShaderHolder::GetInstance()->GetShader("S_Virus");
 	
 	Texture texDiffuse = *TextureHolder::GetInstance()->GetTexture("plasma");
 	sphereModel.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = texDiffuse;

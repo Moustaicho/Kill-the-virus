@@ -3,13 +3,28 @@
 Player::Player() : GameObject("Player")
     , engineRef(Engine::GetInstance())
     , move({0,0})
+    , gameRef(nullptr)
+    , gameUIRef(nullptr)
+    , scoreRef(nullptr)
+    , dmgTimer(1)
+    , isMoving(false)
 {
     
 }
 
 void Player::Start()
 {
+    speed = 300;
     score = 0;
+    health = 100;
+    healthGot = 3;
+    hackSpeed = 120;
+    gameUIRef->SetPlayerHealth(health);
+    if (gameRef != nullptr)
+    {
+        gameUIRef->SetScore(score);
+    }
+
     SetPosition({ GetMonitorWidth(engineRef->GetCurrentMonitor()) / 2 - engineRef->GetWindow()->GetSize().x / 2.0f, GetMonitorHeight(engineRef->GetCurrentMonitor()) / 2 - engineRef->GetWindow()->GetSize().y / 2.0f});
 }
 
@@ -39,6 +54,23 @@ void Player::Update()
        
     }
 
+    if (IsKeyDown(KEY_SPACE))
+    {
+        for (Virus* virus : gameRef->GetVirus())
+        {
+            if (CheckCollisionCircles({255,255}, 100, virus->GetPosition(), 20))
+            {
+                gameUIRef->SetHackUIState(true);
+                StartHacking(virus);
+                break;
+            }
+        }
+    }
+    else
+    {
+        gameUIRef->SetHackUIState(false);
+    }
+
     move = { 0, 0 };
     if (IsKeyDown(KEY_A))
     {
@@ -66,7 +98,33 @@ void Player::Draw()
 
 void Player::End()
 {
+    scoreRef->SetResult(score);
+}
 
+void Player::SetGameRef(Game* game)
+{
+    gameRef = game;
+}
+
+void Player::SetGameUIRef(GameUI* gameUI)
+{
+    gameUIRef = gameUI;
+}
+
+void Player::SetScoreRef(Score* score)
+{
+    scoreRef = score;
+}
+
+void Player::Damage(int dmg)
+{
+    health -= dmg;
+    gameUIRef->SetPlayerHealth(health);
+    if (health <= 0)
+    {
+        scoreRef->SetResult(score);
+        engineRef->LoadScene("ScoreScene");
+    }
 }
 
 void Player::MoveScreen()
@@ -93,4 +151,34 @@ void Player::MoveScreen()
     SetPosition(GetPosition() + move);
 
     SetWindowPosition(GetPosition().x, GetPosition().y);
+}
+
+void Player::StartHacking(Virus* virus)
+{
+    gameUIRef->SetVirusName(virus->GetName());
+    dmgTimer -= hackSpeed * GetFrameTime();
+    if (dmgTimer <= 0)
+    {
+        virus->Damage(1);
+        dmgTimer = 1;
+    }
+
+    gameUIRef->SetVirusHealth(virus->GetHealth());
+
+    if (virus->GetHealth() <= 0)
+    {
+        hackSpeed += 80;
+        speed+=5;
+        gameRef->RemoveVirus(virus);
+        gameUIRef->SetHackUIState(false);
+        score += 100;
+        gameUIRef->SetScore(score);
+        health += std::floor(sqrt(healthGot));
+        healthGot += 1;
+        if (health >= 100)
+        {
+            health = 100;
+        }
+        gameUIRef->SetPlayerHealth(health);
+    }
 }

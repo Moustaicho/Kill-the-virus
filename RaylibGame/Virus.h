@@ -7,6 +7,7 @@
 class Virus : public GameObject
 {
 private:
+	std::string name;
 	int health;
 	Vector2 screenPosition;
 	Virus3D* virusModel;
@@ -23,5 +24,11 @@ public:
 	void End();
 
 	Vector2 GetScreenPosition();
+
+	void SetName(std::string name);
+	std::string GetName();
+
+	void Damage(int dmg);
+	int GetHealth();
 };
 

@@ -5,6 +5,7 @@
 #include "TextureHolder.h"
 #include "MusicHolder.h"
 #include "ModelHolder.h"
+#include "ShaderHolder.h"
 #include "GameObject.h"
 #include "UIButton.h"
 
@@ -31,10 +32,10 @@ private:
 	Shader shaderVirus;
 	int shaderFrame;
 	int framesCounter;
-	Vector3 rotation = { 0 };
+	Vector3 rotation;
 
 	Vector2 sPosition;
-	float angle = 0;
+	float angle;
 
 	Music track;
 private:

@@ -13,9 +13,9 @@ private:
 	Vector2 center;
 
 	//Virus Detector
-	Vector2 offsetRadar = { 150, -150 };
-	float currentRadius = 10;
-	float detectorSpeed = 50;
+	Vector2 offsetRadar;
+	float currentRadius;
+	float detectorSpeed;
 
 	int screenWidth;
 	int screenHeight;
@@ -23,11 +23,19 @@ private:
 	std::string quitText;
 
 	std::string scoreUI;
-	float scoreSize = 25;
+	float scoreSize;
 
-	bool showDebug = false;
+	bool showDebug;
+
+	float hpHeight;
+	float hackWidth;
+
+	std::string hackedVirusName;
+	bool isHacking;
 private:
 	void FindVirus();
+
+	void DisplayKillingVirus();
 public:
 	GameUI(Game* ref);
 
@@ -35,5 +43,12 @@ public:
 	void Update();
 	void Draw();
 	void End();
+
+	void SetHackUIState(bool state);
+	void SetVirusName(std::string name);
+	void SetVirusHealth(int health);
+	void SetScore(int score);
+
+	void SetPlayerHealth(int health);
 };
 

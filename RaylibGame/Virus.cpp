@@ -3,12 +3,14 @@
 
 Virus::Virus(Camera& camera) : GameObject("Virus")
 	, camera(camera)
+	, health(300)
 {
 
 }
 
 Virus::Virus(Vector2 position, Camera& camera) : GameObject("Virus")
 	, camera(camera)
+	, health(300)
 {
 	screenPosition = position;
 }
@@ -46,4 +48,23 @@ void Virus::End()
 Vector2 Virus::GetScreenPosition()
 {
 	return screenPosition;
+}
+
+void Virus::SetName(std::string name)
+{
+	this->name = name;
+}
+
+std::string Virus::GetName()
+{
+	return this->name;
+}
+
+void Virus::Damage(int dmg)
+{
+	health -= dmg;
+}
+int Virus::GetHealth()
+{
+	return health;
 }

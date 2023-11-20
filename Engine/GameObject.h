@@ -33,6 +33,7 @@ public:
 	void AddChild(GameObject* child);
 	GameObject* GetChildAt(int i);
 	void RemoveAllChildren();
+	void RemoveChild(GameObject* child);
 
 	virtual void Start() = 0;
 	virtual void Update() = 0;

@@ -54,3 +54,12 @@ void Score::End()
 
 	GameObject::End();
 }
+
+void Score::SetResult(int score)
+{
+	std::string n = std::to_string(score);
+	size_t s = 6;
+	int precision = 6 - std::min(s, n.size());
+	n.insert(0, precision, '0');
+	this->score = n;
+}

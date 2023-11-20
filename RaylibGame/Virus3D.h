@@ -20,11 +20,12 @@ private:
 	Shader shaderVirus;
 	int shaderFrame;
 	int framesCounter;
-	Vector3 rotation = { 0 };
+	Vector3 rotation;
+	Vector3 randRotation;
 
 	RenderTexture2D target;
 
-	int limitDrawThreshold = 15;
+	int limitDrawThreshold;
 public:
 	Virus3D(Camera& camera);
 	void Start();

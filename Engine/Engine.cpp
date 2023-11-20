@@ -4,6 +4,11 @@ Engine* Engine::instance = NULL;
 Engine::Engine()
 	: window(new Window(500, 500, "KILL THE VIRUS"))
 	, backgroundColor(RAYWHITE)
+	, closeGame(false)
+	, currentMonitor(0)
+	, currentScene("")
+	, customCursor(false)
+	, showCustomCursor(true)
 {
 	window->SetPosition(GetMonitorWidth(currentMonitor) / 2 - window->GetSize().x / 2.0f, GetMonitorHeight(currentMonitor) / 2 - window->GetSize().y / 2.0f);
 	SetExitKey(KEY_NULL);

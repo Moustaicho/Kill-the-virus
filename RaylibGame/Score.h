@@ -23,5 +23,7 @@ public:
 	void Update();
 	void Draw();
 	void End();
+
+	void SetResult(int score);
 };
 

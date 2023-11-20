@@ -80,6 +80,11 @@ void GameObject::RemoveAllChildren()
 	children.clear();
 }
 
+void GameObject::RemoveChild(GameObject* child)
+{
+	children.erase(std::remove(children.begin(), children.end(), child), children.end());
+}
+
 void GameObject::Start()
 {
 	for (GameObject* gameobject : children)

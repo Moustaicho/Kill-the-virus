@@ -11,6 +11,8 @@ private:
 	Engine* engineRef;
 	std::string title;
 	std::string description;
+	std::string virusMechanic;
+	std::string sound;
 
 	UIButton buttonBack;
 

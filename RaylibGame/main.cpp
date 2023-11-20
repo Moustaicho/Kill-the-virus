@@ -13,33 +13,45 @@
 #include "Score.h"
 #include "raymath.h"
 
+//3D Space
 //X is Right
 //Y is Up
 //Z is Forward
-int main(void)
+
+//RaylibGame properties->Linker->System->SubSystem to change to compile to windows or console!
+int WinMain(void)
 {
-    
     srand((unsigned int)time(NULL)); //Need this for random numbers
     //---------------Instatiate game------------------
     Engine* gameEngine = Engine::GetInstance();
+
+    //-------------Application Setup------------------
+    Image icon = LoadImage("Assets/Sprites/plasma.png");
+    SetWindowIcon(icon);
+
     //--------------Add Textures here-----------------
     TextureHolder::GetInstance()->AddTexture("mask", LoadTexture("Assets/Sprites/mask.png"));
     TextureHolder::GetInstance()->AddTexture("plasma", LoadTexture("Assets/Sprites/plasma.png"));
     TextureHolder::GetInstance()->AddTexture("cursor", LoadTexture("Assets/Sprites/Cursor.png"));
     TextureHolder::GetInstance()->AddRenderTexture("RT_Virus", LoadRenderTexture(50, 50));
     gameEngine->SetCustomCursor(*TextureHolder::GetInstance()->GetTexture("cursor"));
+
     //----------------Add Shader here-----------------
     ShaderHolder::GetInstance()->AddShader("S_Virus", LoadShader(TextFormat("Assets/Shaders/S_Virus.vs", GLSL_VERSION), TextFormat("Assets/Shaders/S_Virus.fs", GLSL_VERSION)));
+    
     //----------------Add Music here------------------
     MusicHolder::GetInstance()->AddMusic("M_Game", LoadMusicStream("Assets/Audio/Music/Octahedron - CAMERA_SURVEILLANCE.wav"));
     MusicHolder::GetInstance()->AddMusic("M_GameOver", LoadMusicStream("Assets/Audio/Music/Octahedron - The Virus Manifests.wav"));
+    
     //----------------Add Fonts here------------------
     Font font = LoadFont("Assets/Font/monofonto.otf");
     FontLibrary* fontLibrary = FontLibrary::GetInstance();
     fontLibrary->AddFont("Monto", font);
+    
     //-----------Add Models & Mesh here---------------
     ModelHolder::GetInstance()->AddMesh("Mesh_Virus", GenMeshSphere(1, 16, 16));
     ModelHolder::GetInstance()->AddModel("Model_Virus", LoadModelFromMesh(*ModelHolder::GetInstance()->GetMesh("Mesh_Virus")));
+    
     //-------------Add gameplay here------------------
     Scene* menuScene = new Scene("MenuScene");
     gameEngine->AddScene(menuScene);
@@ -63,13 +75,16 @@ int main(void)
     Score score;
     scoreScene->AddGameObject(&score);
 
-    Player player;
-    gameScene->AddGameObject(&player);
-    tutorialScene->AddGameObject(&player);
-
     GameUI gameUI(&game);
     gameScene->AddGameObject(&gameUI);
-
+    Player player;
+    player.SetGameRef(&game);
+    player.SetGameUIRef(&gameUI);
+    player.SetScoreRef(&score);
+    game.SetPlayerRef(&player);
+    gameScene->AddGameObject(&player);
+    tutorialScene->AddGameObject(&player);
+    
     //--------------Initialize game------------------
     gameEngine->Initialize();
     //----------------Update game--------------------

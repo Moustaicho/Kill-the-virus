@@ -16,16 +16,16 @@ class Engine
 private:
 	static Engine* instance;
 
-	bool closeGame = false;
+	bool closeGame;
 
-	int currentMonitor = 0;
-	std::string currentScene = "";
+	int currentMonitor;
+	std::string currentScene;
 	std::map<std::string, Scene*> scenes;
 	Window* window;
 	Color backgroundColor;
 
-	bool customCursor = false;
-	bool showCustomCursor = true;
+	bool customCursor;
+	bool showCustomCursor;
 	Texture* textureCursor;
 private:
 	Engine();
