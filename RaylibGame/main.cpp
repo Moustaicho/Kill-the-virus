@@ -18,8 +18,11 @@
 //Y is Up
 //Z is Forward
 
-//RaylibGame properties->Linker->System->SubSystem to change to compile to windows or console!
+#if _DEBUG 
+int main(void)
+#else
 int WinMain(void)
+#endif
 {
     srand((unsigned int)time(NULL)); //Need this for random numbers
     //---------------Instatiate game------------------
@@ -30,27 +33,35 @@ int WinMain(void)
     SetWindowIcon(icon);
 
     //--------------Add Textures here-----------------
-    TextureHolder::GetInstance()->AddTexture("mask", LoadTexture("Assets/Sprites/mask.png"));
-    TextureHolder::GetInstance()->AddTexture("plasma", LoadTexture("Assets/Sprites/plasma.png"));
-    TextureHolder::GetInstance()->AddTexture("cursor", LoadTexture("Assets/Sprites/Cursor.png"));
-    TextureHolder::GetInstance()->AddRenderTexture("RT_Virus", LoadRenderTexture(50, 50));
-    gameEngine->SetCustomCursor(*TextureHolder::GetInstance()->GetTexture("cursor"));
+    Texture2D* mask = new Texture2D(LoadTexture("Assets/Sprites/mask.png"));
+    Texture2D* plasma = new Texture2D(LoadTexture("Assets/Sprites/plasma.png"));
+    Texture2D* cursor = new Texture2D(LoadTexture("Assets/Sprites/Cursor.png"));
+    RenderTexture2D* rTexture = new RenderTexture2D(LoadRenderTexture(50, 50));
+
+    TextureHolder::GetInstance()->AddTexture("mask", mask);
+    TextureHolder::GetInstance()->AddTexture("plasma", plasma);
+    TextureHolder::GetInstance()->AddTexture("cursor", cursor);
+    TextureHolder::GetInstance()->AddRenderTexture("RT_Virus", rTexture);
+    gameEngine->SetCustomCursor(TextureHolder::GetInstance()->GetTexture("cursor"));
 
     //----------------Add Shader here-----------------
-    ShaderHolder::GetInstance()->AddShader("S_Virus", LoadShader(TextFormat("Assets/Shaders/S_Virus.vs", GLSL_VERSION), TextFormat("Assets/Shaders/S_Virus.fs", GLSL_VERSION)));
+    Shader* shader = new Shader(LoadShader(TextFormat("Assets/Shaders/S_Virus.vs", GLSL_VERSION), TextFormat("Assets/Shaders/S_Virus.fs", GLSL_VERSION)));
+    ShaderHolder::GetInstance()->AddShader("S_Virus", shader);
     
     //----------------Add Music here------------------
-    MusicHolder::GetInstance()->AddMusic("M_Game", LoadMusicStream("Assets/Audio/Music/Octahedron - CAMERA_SURVEILLANCE.wav"));
-    MusicHolder::GetInstance()->AddMusic("M_GameOver", LoadMusicStream("Assets/Audio/Music/Octahedron - The Virus Manifests.wav"));
-    
+    Music* mGame = new Music(LoadMusicStream("Assets/Audio/Music/Octahedron - CAMERA_SURVEILLANCE.wav"));
+    Music* mGameOver = new Music(LoadMusicStream("Assets/Audio/Music/Octahedron - The Virus Manifests.wav"));
+    MusicHolder::GetInstance()->AddMusic("M_Game", mGame);
+    MusicHolder::GetInstance()->AddMusic("M_GameOver", mGameOver);
     //----------------Add Fonts here------------------
-    Font font = LoadFont("Assets/Font/monofonto.otf");
-    FontLibrary* fontLibrary = FontLibrary::GetInstance();
-    fontLibrary->AddFont("Monto", font);
+    Font* font = new Font(LoadFont("Assets/Font/monofonto.otf"));
+    FontLibrary::GetInstance()->AddFont("Monto", font);
     
     //-----------Add Models & Mesh here---------------
-    ModelHolder::GetInstance()->AddMesh("Mesh_Virus", GenMeshSphere(1, 16, 16));
-    ModelHolder::GetInstance()->AddModel("Model_Virus", LoadModelFromMesh(*ModelHolder::GetInstance()->GetMesh("Mesh_Virus")));
+    Mesh* vMesh = new Mesh(GenMeshSphere(1, 16, 16));
+    Model* vModel = new Model(LoadModelFromMesh(*vMesh));
+    ModelHolder::GetInstance()->AddMesh("Mesh_Virus", vMesh);
+    ModelHolder::GetInstance()->AddModel("Model_Virus", vModel);
     
     //-------------Add gameplay here------------------
     Scene* menuScene = new Scene("MenuScene");

@@ -104,10 +104,10 @@ void Engine::CloseGame()
 	closeGame = true;
 }
 
-void Engine::SetCustomCursor(Texture texture)
+void Engine::SetCustomCursor(Texture* texture)
 {
 	customCursor = true;
-	textureCursor = &texture;
+	textureCursor = texture;
 }
 
 void Engine::ShowCustomCursor(bool state)

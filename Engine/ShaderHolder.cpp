@@ -14,9 +14,9 @@ ShaderHolder* ShaderHolder::GetInstance()
 	return instance;
 }
 
-void ShaderHolder::AddShader(std::string name, Shader shader)
+void ShaderHolder::AddShader(std::string name, Shader* shader)
 {
-	shaders.insert(std::pair<std::string, Shader*>(name, &shader));
+	shaders.insert(std::pair<std::string, Shader*>(name, shader));
 }
 
 Shader* ShaderHolder::GetShader(std::string name)

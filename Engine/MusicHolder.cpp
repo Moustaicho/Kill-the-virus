@@ -3,6 +3,7 @@
 MusicHolder* MusicHolder::instance = NULL;
 MusicHolder::MusicHolder()
 {
+
 }
 
 MusicHolder* MusicHolder::GetInstance()
@@ -14,9 +15,9 @@ MusicHolder* MusicHolder::GetInstance()
 	return instance;
 }
 
-void MusicHolder::AddMusic(std::string name, Music music)
+void MusicHolder::AddMusic(std::string name, Music* music)
 {
-	tracks.insert(std::pair<std::string, Music*>(name, &music));
+	tracks.insert(std::pair<std::string, Music*>(name, music));
 }
 
 Music* MusicHolder::GetMusic(std::string name)

@@ -118,7 +118,7 @@ void Menu::Start()
 	sphereModel.materials[0].shader = shaderVirus;
 	framesCounter = 0;
 
-	sPosition = { engineRef->GetWindow()->GetSize().x / 2.0f - 20 - MeasureTextEx(FontLibrary::GetInstance()->GetFont("Monto"), title.c_str(), fontSize, 5).x / 2, 50 };
+	sPosition = { engineRef->GetWindow()->GetSize().x / 2.0f - 20 - MeasureTextEx(*FontLibrary::GetInstance()->GetFont("Monto"), title.c_str(), fontSize, 5).x / 2, 50 };
 
 	GameObject::Start();
 }
@@ -131,7 +131,7 @@ void Menu::Update()
 	SetShaderValue(shaderVirus, shaderFrame, &framesCounter, SHADER_UNIFORM_INT);
 	sphereModel.transform = MatrixRotateXYZ(rotation);
 	angle += 1 * GetFrameTime();
-	sPosition = RotateAround(sPosition, { engineRef->GetWindow()->GetSize().x / 2.0f - MeasureTextEx(FontLibrary::GetInstance()->GetFont("Monto"), title.c_str(), fontSize, 5).x / 2, 50 }, 1*GetFrameTime());
+	sPosition = RotateAround(sPosition, { engineRef->GetWindow()->GetSize().x / 2.0f - MeasureTextEx(*FontLibrary::GetInstance()->GetFont("Monto"), title.c_str(), fontSize, 5).x / 2, 50 }, 1*GetFrameTime());
 
 	GameObject::Update();
 }
@@ -140,8 +140,8 @@ void Menu::Draw()
 {
 	ClearBackground(BLANK);
 	
-	DrawTextEx(FontLibrary::GetInstance()->GetFont("Monto"), title.c_str(), sPosition, fontSize, 5, { 0,255,0,200 });
-	DrawTextEx(FontLibrary::GetInstance()->GetFont("Monto"), title.c_str(), { engineRef->GetWindow()->GetSize().x / 2.0f - MeasureTextEx(FontLibrary::GetInstance()->GetFont("Monto"), title.c_str(), fontSize, 5).x / 2, 50 }, fontSize, 5, {255,0,0,200});
+	DrawTextEx(*FontLibrary::GetInstance()->GetFont("Monto"), title.c_str(), sPosition, fontSize, 5, { 0,255,0,200 });
+	DrawTextEx(*FontLibrary::GetInstance()->GetFont("Monto"), title.c_str(), { engineRef->GetWindow()->GetSize().x / 2.0f - MeasureTextEx(*FontLibrary::GetInstance()->GetFont("Monto"), title.c_str(), fontSize, 5).x / 2, 50 }, fontSize, 5, {255,0,0,200});
 	
 
 	BeginMode3D(camera);

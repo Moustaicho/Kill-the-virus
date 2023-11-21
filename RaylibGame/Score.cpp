@@ -42,9 +42,9 @@ void Score::Update()
 void Score::Draw()
 {
 	ClearBackground(BLANK);
-	DrawTextEx(FontLibrary::GetInstance()->GetFont("Monto"), title.c_str(), { engineRef->GetWindow()->GetSize().x / 2.0f - MeasureTextEx(FontLibrary::GetInstance()->GetFont("Monto"), title.c_str(), 50, 5).x / 2,20}, 50, 5, { 0,255,0,200 });
-	DrawTextEx(FontLibrary::GetInstance()->GetFont("Monto"), description.c_str(), { engineRef->GetWindow()->GetSize().x / 2.0f - MeasureTextEx(FontLibrary::GetInstance()->GetFont("Monto"), description.c_str(), 50, 1).x / 2,150}, 50, 1, { 0,255,0,200 });
-	DrawTextEx(FontLibrary::GetInstance()->GetFont("Monto"), score.c_str(), { engineRef->GetWindow()->GetSize().x / 2.0f - MeasureTextEx(FontLibrary::GetInstance()->GetFont("Monto"), score.c_str(), 60, 1).x / 2,250-30}, 60, 1, { 255,0,0,200 });
+	DrawTextEx(*FontLibrary::GetInstance()->GetFont("Monto"), title.c_str(), { engineRef->GetWindow()->GetSize().x / 2.0f - MeasureTextEx(*FontLibrary::GetInstance()->GetFont("Monto"), title.c_str(), 50, 5).x / 2,20}, 50, 5, { 0,255,0,200 });
+	DrawTextEx(*FontLibrary::GetInstance()->GetFont("Monto"), description.c_str(), { engineRef->GetWindow()->GetSize().x / 2.0f - MeasureTextEx(*FontLibrary::GetInstance()->GetFont("Monto"), description.c_str(), 50, 1).x / 2,150}, 50, 1, { 0,255,0,200 });
+	DrawTextEx(*FontLibrary::GetInstance()->GetFont("Monto"), score.c_str(), { engineRef->GetWindow()->GetSize().x / 2.0f - MeasureTextEx(*FontLibrary::GetInstance()->GetFont("Monto"), score.c_str(), 60, 1).x / 2,250-30}, 60, 1, { 255,0,0,200 });
 
 	GameObject::Draw();
 }

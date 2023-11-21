@@ -11,7 +11,7 @@ Credit::Credit() : GameObject("Credit")
 	, sizeMusic(30)
 	, buttonBack()
 {
-	font = FontLibrary::GetInstance()->GetFont("Monto");
+	font = *FontLibrary::GetInstance()->GetFont("Monto");
 
 	AddChild(&buttonBack);
 }

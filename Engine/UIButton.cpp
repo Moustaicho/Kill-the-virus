@@ -2,7 +2,7 @@
 
 UIButton::UIButton() : GameObject("UIButton")
 	, text("Button")
-	, textFont(FontLibrary::GetInstance()->GetFont("Default"))
+	, textFont(*FontLibrary::GetInstance()->GetFont("Default"))
 	, textSize(10)
 	, margin({10,10})
 	, box({ 0, 0, 150, 50 })

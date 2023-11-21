@@ -43,10 +43,10 @@ void Tutorial::Update()
 void Tutorial::Draw()
 {
 	ClearBackground(BLANK);
-	DrawTextEx(FontLibrary::GetInstance()->GetFont("Monto"), title.c_str(), { engineRef->GetWindow()->GetSize().x / 2.0f - MeasureTextEx(FontLibrary::GetInstance()->GetFont("Monto"), title.c_str(), fontSizeTitle, 5).x / 2, 50 }, fontSizeTitle, 5, { 0,255,0,200 });
-	DrawTextEx(FontLibrary::GetInstance()->GetFont("Monto"), description.c_str(), { engineRef->GetWindow()->GetSize().x / 2.0f - MeasureTextEx(FontLibrary::GetInstance()->GetFont("Monto"), description.c_str(), fontSizeDescription, 1).x / 2,150}, fontSizeDescription, 1, { 0,255,0,200 });
-	DrawTextEx(FontLibrary::GetInstance()->GetFont("Monto"), virusMechanic.c_str(), { engineRef->GetWindow()->GetSize().x / 2.0f - MeasureTextEx(FontLibrary::GetInstance()->GetFont("Monto"), virusMechanic.c_str(), fontSizeDescription, 1).x / 2,200}, fontSizeDescription, 1, { 0,255,0,200 });
-	DrawTextEx(FontLibrary::GetInstance()->GetFont("Monto"), sound.c_str(), { engineRef->GetWindow()->GetSize().x / 2.0f - MeasureTextEx(FontLibrary::GetInstance()->GetFont("Monto"), sound.c_str(), fontSizeDescription, 1).x / 2,250}, fontSizeDescription, 1, { 0,255,0,200 });
+	DrawTextEx(*FontLibrary::GetInstance()->GetFont("Monto"), title.c_str(), { engineRef->GetWindow()->GetSize().x / 2.0f - MeasureTextEx(*FontLibrary::GetInstance()->GetFont("Monto"), title.c_str(), fontSizeTitle, 5).x / 2, 50 }, fontSizeTitle, 5, { 0,255,0,200 });
+	DrawTextEx(*FontLibrary::GetInstance()->GetFont("Monto"), description.c_str(), { engineRef->GetWindow()->GetSize().x / 2.0f - MeasureTextEx(*FontLibrary::GetInstance()->GetFont("Monto"), description.c_str(), fontSizeDescription, 1).x / 2,150}, fontSizeDescription, 1, { 0,255,0,200 });
+	DrawTextEx(*FontLibrary::GetInstance()->GetFont("Monto"), virusMechanic.c_str(), { engineRef->GetWindow()->GetSize().x / 2.0f - MeasureTextEx(*FontLibrary::GetInstance()->GetFont("Monto"), virusMechanic.c_str(), fontSizeDescription, 1).x / 2,200}, fontSizeDescription, 1, { 0,255,0,200 });
+	DrawTextEx(*FontLibrary::GetInstance()->GetFont("Monto"), sound.c_str(), { engineRef->GetWindow()->GetSize().x / 2.0f - MeasureTextEx(*FontLibrary::GetInstance()->GetFont("Monto"), sound.c_str(), fontSizeDescription, 1).x / 2,250}, fontSizeDescription, 1, { 0,255,0,200 });
 	
 	GameObject::Draw();
 }

@@ -9,7 +9,7 @@ class FontLibrary
 private:
 	static FontLibrary* instance;
 
-	std::map<std::string,Font> fonts;
+	std::map<std::string,Font*> fonts;
 private:
 	FontLibrary();
 public:
@@ -18,6 +18,6 @@ public:
 
 	static FontLibrary* GetInstance();
 
-	void AddFont(std::string fontname, Font newfont);
-	Font GetFont(std::string fontname);
+	void AddFont(std::string fontname, Font* newfont);
+	Font* GetFont(std::string fontname);
 };

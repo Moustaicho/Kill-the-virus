@@ -16,7 +16,7 @@ public:
 
 	static ShaderHolder* GetInstance();
 
-	void AddShader(std::string name, Shader shader);
+	void AddShader(std::string name, Shader* shader);
 	Shader* GetShader(std::string name);
 };
 

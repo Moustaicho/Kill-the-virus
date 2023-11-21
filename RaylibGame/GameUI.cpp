@@ -42,7 +42,7 @@ void GameUI::DisplayKillingVirus()
 {
     std::string text = "KILLING VIRUS: " + hackedVirusName;
     if (hackWidth > 300) hackWidth = 300;
-    DrawTextEx(FontLibrary::GetInstance()->GetFont("Monto"), text.c_str(), {center.x - MeasureTextEx(FontLibrary::GetInstance()->GetFont("Monto"), text.c_str(), 20, 1).x / 2.0f, engineRef->GetWindow()->GetSize().y - 80.0f}, 20, 1, GREEN);
+    DrawTextEx(*FontLibrary::GetInstance()->GetFont("Monto"), text.c_str(), {center.x - MeasureTextEx(*FontLibrary::GetInstance()->GetFont("Monto"), text.c_str(), 20, 1).x / 2.0f, engineRef->GetWindow()->GetSize().y - 80.0f}, 20, 1, GREEN);
     DrawRectangle(center.x - 300 / 2.0, engineRef->GetWindow()->GetSize().y - 50, hackWidth, 35, { 0,0,255,100 });
     DrawRectangleLines(center.x - 150, engineRef->GetWindow()->GetSize().y - 50, 300, 35, GREEN);
 }
@@ -82,8 +82,8 @@ void GameUI::Draw()
         DrawFPS(10, 10);
     }
     std::string textSore = "SCORE: " + scoreUI;
-    DrawTextEx(FontLibrary::GetInstance()->GetFont("Monto"), textSore.c_str(), { engineRef->GetWindow()->GetSize().x / 2.0f - MeasureTextEx(FontLibrary::GetInstance()->GetFont("Monto"), textSore.c_str(), scoreSize, 5).x / 2, 10 }, scoreSize, 1, { 0,255,0,255 });
-    DrawTextEx(FontLibrary::GetInstance()->GetFont("Monto"), quitText.c_str(), { 10, 15 }, 15, 1, { 0,255,0,255 });
+    DrawTextEx(*FontLibrary::GetInstance()->GetFont("Monto"), textSore.c_str(), { engineRef->GetWindow()->GetSize().x / 2.0f - MeasureTextEx(*FontLibrary::GetInstance()->GetFont("Monto"), textSore.c_str(), scoreSize, 5).x / 2, 10 }, scoreSize, 1, { 0,255,0,255 });
+    DrawTextEx(*FontLibrary::GetInstance()->GetFont("Monto"), quitText.c_str(), { 10, 15 }, 15, 1, { 0,255,0,255 });
 
     DrawCircleLines(center.x, center.y , 100, WHITE);
     
@@ -96,7 +96,7 @@ void GameUI::Draw()
 
     FindVirus();
 
-    DrawTextEx(FontLibrary::GetInstance()->GetFont("Monto"), "HP", { 13.5f, engineRef->GetWindow()->GetSize().y - 270.0f}, 20, 1, GREEN);
+    DrawTextEx(*FontLibrary::GetInstance()->GetFont("Monto"), "HP", { 13.5f, engineRef->GetWindow()->GetSize().y - 270.0f}, 20, 1, GREEN);
     DrawRectangle(10, engineRef->GetWindow()->GetSize().y - 50 - hpHeight, 25, hpHeight, {200, 0, 0, 100});
     DrawRectangleLines(10, engineRef->GetWindow()->GetSize().y - 250, 25, 200, GREEN);
 

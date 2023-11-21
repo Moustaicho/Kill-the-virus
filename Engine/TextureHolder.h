@@ -18,10 +18,10 @@ public:
 
 	static TextureHolder* GetInstance();
 
-	void AddTexture(std::string name, Texture2D texture);
+	void AddTexture(std::string name, Texture2D* texture);
 	Texture2D* GetTexture(std::string name);
 
-	void AddRenderTexture(std::string name, RenderTexture2D texture);
+	void AddRenderTexture(std::string name, RenderTexture2D* texture);
 	RenderTexture2D* GetRenderTexture(std::string name);
 };
 

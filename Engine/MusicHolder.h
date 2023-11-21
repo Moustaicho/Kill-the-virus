@@ -16,7 +16,7 @@ public:
 
 	static MusicHolder* GetInstance();
 
-	void AddMusic(std::string name, Music music);
+	void AddMusic(std::string name, Music* music);
 	Music* GetMusic(std::string name);
 };
 

@@ -4,8 +4,8 @@
 FontLibrary* FontLibrary::instance = NULL;
 FontLibrary::FontLibrary()
 {
-	Font fontDefault = GetFontDefault();
-	fonts.insert(std::pair<std::string, Font>("Default", fontDefault));
+	Font* fontDefault = new Font(GetFontDefault());
+	fonts.insert(std::pair<std::string, Font*>("Default", fontDefault));
 }
 
 FontLibrary* FontLibrary::GetInstance()
@@ -17,12 +17,12 @@ FontLibrary* FontLibrary::GetInstance()
 	return instance;
 }
 
-void FontLibrary::AddFont(std::string fontname, Font newfont)
+void FontLibrary::AddFont(std::string fontname, Font* newfont)
 {
-	fonts.insert(std::pair<std::string, Font>(fontname, newfont));
+	fonts.insert(std::pair<std::string, Font*>(fontname, newfont));
 }
 
-Font FontLibrary::GetFont(std::string name)
+Font* FontLibrary::GetFont(std::string name)
 {
 	//assert(fonts.find(name) != fonts.end);
 	return fonts.find(name)->second;

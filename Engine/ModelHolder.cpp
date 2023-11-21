@@ -14,9 +14,9 @@ ModelHolder* ModelHolder::GetInstance()
 	return instance;
 }
 
-void ModelHolder::AddModel(std::string name, Model model)
+void ModelHolder::AddModel(std::string name, Model* model)
 {
-	models.insert(std::pair<std::string, Model*>(name, &model));
+	models.insert(std::pair<std::string, Model*>(name, model));
 }
 
 Model* ModelHolder::GetModel(std::string name)
@@ -24,9 +24,9 @@ Model* ModelHolder::GetModel(std::string name)
 	return models.find(name)->second;
 }
 
-void ModelHolder::AddMesh(std::string name, Mesh mesh)
+void ModelHolder::AddMesh(std::string name, Mesh* mesh)
 {
-	meshes.insert(std::pair<std::string, Mesh*>(name, &mesh));
+	meshes.insert(std::pair<std::string, Mesh*>(name, mesh));
 }
 
 Mesh* ModelHolder::GetMesh(std::string name)

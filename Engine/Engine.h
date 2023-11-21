@@ -49,6 +49,6 @@ public:
 
 	void CloseGame();
 
-	void SetCustomCursor(Texture texture);
+	void SetCustomCursor(Texture* texture);
 	void ShowCustomCursor(bool state);
 };

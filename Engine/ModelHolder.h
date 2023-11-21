@@ -18,10 +18,10 @@ public:
 	static ModelHolder* GetInstance();
 
 	//Get model
-	void AddModel(std::string name, Model model);
+	void AddModel(std::string name, Model* model);
 	Model* GetModel(std::string name);
 	//GetMesh
-	void AddMesh(std::string name, Mesh mesh);
+	void AddMesh(std::string name, Mesh* mesh);
 	Mesh* GetMesh(std::string name);
 };
 
